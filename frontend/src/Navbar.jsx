@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
-const Navbar = () => {
+const Navbar = ({menuOpen,setmenuOpen}) => {
+  useEffect(()=>{
+    document.body.style.overflow=menuOpen?"hidden":"";
+  },[menuOpen])
   return (
     <nav className="mt-0 min-w-screen z-40 bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg">
       <div className="min-w-screen mx-auto px-4">
@@ -36,7 +40,7 @@ const Navbar = () => {
           {/* This is the mobile menu */}
           <div
             className=" w-7 h-5 relative left-0 cursor-pointer z-40 md:hidden"
-            
+            onClick={() => setmenuOpen((prev) => !prev)}
           >
             &#9776;
           </div>
