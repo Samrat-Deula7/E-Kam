@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 const Navbar = ({menuOpen,setmenuOpen}) => {
+
+  // The following useEffect prevents the page form scrolling when the hamburger icon is open
   useEffect(()=>{
     document.body.style.overflow=menuOpen?"hidden":"";
   },[menuOpen])
