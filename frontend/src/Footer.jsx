@@ -8,22 +8,22 @@ const Footer = () => {
       <div className=" w-64 flex flex-col px-3 py-4b font-bold h-36 border-r-2 border-gray-500">
         <h1>You can follw me on:</h1>
         <a href="https://www.facebook.com/samrat.deula.52" target="_blank">
-          -<i class="fa-brands fa-facebook"></i>
+          -<i className="fa-brands fa-facebook"></i>
           <span className="font-light">Facebook</span>
         </a>
         <a href="https://www.instagram.com/deula.samrat/" target="_blank">
-          -<i class="fa-brands fa-instagram"></i>
+          -<i className="fa-brands fa-instagram"></i>
           <span className="font-light">Instagram</span>
         </a>
         <a
           href="https://www.linkedin.com/in/samrat-deula-412531369/"
           target="_blank"
         >
-          -<i class="fa-brands fa-linkedin"></i>
+          -<i className="fa-brands fa-linkedin"></i>
           <span className="font-light">Linkedin</span>
         </a>
         <a href="https://github.com/Samrat-Deula7" target="_blank">
-          -<i class="fa-brands fa-github"></i>
+          -<i className="fa-brands fa-github"></i>
           <span className="font-light">Github</span>
         </a>
       </div>

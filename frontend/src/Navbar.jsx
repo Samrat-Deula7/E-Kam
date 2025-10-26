@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { use, useEffect } from "react";
 
-const Navbar = ({menuOpen,setmenuOpen}) => {
-
+const Navbar = ({ menuOpen, setmenuOpen }) => {
+  const location=useLocation();
+  
   // The following useEffect prevents the page form scrolling when the hamburger icon is open
-  useEffect(()=>{
-    document.body.style.overflow=menuOpen?"hidden":"";
-  },[menuOpen])
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+  }, [menuOpen]);
   return (
     <nav className="fixed top-0 max-w-screen z-40 bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg">
       <div className="min-w-screen mx-auto px-4">
@@ -24,13 +25,17 @@ const Navbar = ({menuOpen,setmenuOpen}) => {
           <div className="hidden md:flex items-center gap-x-8">
             <Link
               to="/"
-              className="  md:text-xl lg:text-3xl bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent cursor-pointer hover:text-stone-200 "
+              className={` md:text-xl lg:text-3xl bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent cursor-pointer hover:text-stone-200 ${
+                location.pathname === "/" ? "text-white" : ""
+              }`}
             >
               Home
             </Link>
             <Link
               to="/services"
-              className="  md:text-xl lg:text-3xl bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent cursor-pointer hover:text-stone-200 "
+              className={` md:text-xl lg:text-3xl bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent cursor-pointer hover:text-stone-200 ${
+                location.pathname === "/services" ? "text-white" : ""
+              }`}
             >
               Services
             </Link>
