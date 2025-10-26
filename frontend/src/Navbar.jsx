@@ -8,7 +8,7 @@ const Navbar = ({menuOpen,setmenuOpen}) => {
     document.body.style.overflow=menuOpen?"hidden":"";
   },[menuOpen])
   return (
-    <nav className="mt-0 min-w-screen z-40 bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg">
+    <nav className="fixed top-0 max-w-screen z-40 bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg">
       <div className="min-w-screen mx-auto px-4">
         <div className="flex justify-between sm:justify-around items-center h-16">
           <Link

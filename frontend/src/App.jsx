@@ -3,6 +3,7 @@ import Navbar from "./Navbar"
 import MobileMenu from "./MobileMenu";
 import Home from "./components/Home";
 import Services from "./components/services";
+import Footer from "./footer";
 import { useState } from "react";
 
 
@@ -17,6 +18,7 @@ const[menuOpen,setmenuOpen]=useState(false);
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
         </Routes>
+        <Footer/>
       </Router>
     </>
   );
