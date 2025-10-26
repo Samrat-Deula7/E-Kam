@@ -42,6 +42,8 @@ router.post("/createcontractor", [
         experience:req.body.experience,
         cost :req.body.cost
       });
+
+      res.json("data saved" );
     } catch (error) {
       console.error(error);
       res.status(500).send("Some error occured");
