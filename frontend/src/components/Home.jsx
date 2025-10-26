@@ -14,10 +14,10 @@ const Home = () => {
           lets find the right contractor for you:
         </p>
         <Link
-          to="/search"
+          to="/services"
           className=" py-3 px-6 md:text-xl cursor-pointer rounded font-medium md:font-bold tracking-all duration-200 bg-stone-600 text-gray-400 hover:text-stone-200  hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10"
         >
-          Search
+          Services
         </Link>
       </div>
     </div>
