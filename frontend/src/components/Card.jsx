@@ -1,6 +1,6 @@
 const Card = () => {
   return (
-    <div className="flex flex-col items-center  bg-stone-600 h-80 w-80 rounded-2xl px-4 py-3">
+    <div className="flex flex-col items-center  bg-stone-600 h-80 w-80 rounded-2xl px-4 py-3 mb-5 ml-3 mr-3">
       {/* This is div 1 */}
       <div className="grid grid-cols-2  mb-3">
         <div className="w-23 h-23 md:w-28 md:h-28 lg:w-31 lg:h-31  rounded-full bg-linear-to-r from-stone-600 to-white ">
