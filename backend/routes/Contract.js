@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const JWT_SECRET = process.env.JWT_SECRET;
 var jwt = require("jsonwebtoken");
-
+const fetchcontractor =require("../middleware/fetchcontractor")
 
 //ROUTE 1:Create a User using:POST "/api/contractor/createcontractor".Doesn't require login
 
@@ -66,6 +66,8 @@ router.post(
     }
   }
 );
+
+
 //ROUTE 2:Create a User using:POST "/api/contractor/login".Doesn't require login
 router.post("/login", [
   body("password", "Password cannot be black").exists(),
@@ -97,16 +99,29 @@ async (req,res)=>{
              }
 
              // The following code generates an authentication token which is provided to the user
-             const data = {
-               contractor: {
-                 id: contractor.id,
-               },
-             };
-             const authtoken = jwt.sign(data, JWT_SECRET);
-             res.json({  authtoken: authtoken });
+            //  const data = {
+            //    contractor: {
+            //      id: contractor.id,
+            //    },
+            //  };
+            //  const authtoken = jwt.sign(data, JWT_SECRET);
+            //  res.json({  authtoken: authtoken });
+             res.json(contractor.id);
            } catch (error) {
              console.error(error);
              res.status(500).send("Internal server error");
            }
 });
+
+//ROUTE 3: Contractor's data retrived through the use of _id to do CURD operatins login required :/api/contractor/fetchdata
+router.get("/fetchdata", fetchcontractor, async (req, res) => {
+  try {
+    res.json({contractor: req.contractor});
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Some error occured");
+  }
+});
+
+
 module.exports=router;
