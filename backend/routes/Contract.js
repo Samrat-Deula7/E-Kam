@@ -196,5 +196,25 @@ router.put("/updatedata/:id", fetchcontractor, async (req, res) => {
 });
 
 //ROUTE 6:Delete an existing contractor data using:delete  /api/contractor/deletenote/:id, login required
+router.delete("/deletenote/:id", fetchcontractor, async (req, res) => {
+  try {
+    //Find the note to be deleted and delete it.
+    // req.params.id is simply the note id that I pass as an parameter in the url(/api/contractor/deletenote/:id)
+    let contractor = await Contractor.findById(req.params.id);
+    if (!contractor) {
+      return res.status(404).send("Not Found");
+    }
 
+    // Allow deletion only if user owns this Note
+    if (contractor.id.toString() !== req.contractor.id) {
+      return res.status(401).send("Not Allowed");
+    }
+
+    note = await Contractor.findByIdAndDelete(req.params.id);
+    res.json({ Success: "Contractor data has been deleted", contractor: contractor });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Some error occured");
+  }
+});
 module.exports = router;
