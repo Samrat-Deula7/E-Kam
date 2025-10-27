@@ -3,7 +3,9 @@ const router=express.Router();
 const Contractor=require("../model/Contractors");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
-
+require("dotenv").config();
+const JWT_SECRET = process.env.JWT_SECRET;
+var jwt = require("jsonwebtoken");
 
 
 //ROUTE 1:Create a User using:POST "/api/contractor/createcontractor".Doesn't require login
@@ -48,12 +50,63 @@ router.post(
         work: req.body.work,
       });
 
-      res.json("data saved");
-    } catch (error) {
+      // The following code generates an authentication token which is provided to the user
+      const data = {
+        contractor: {
+          id: contractor.id,
+        },
+      };
+      // This gives the user the authtoken using which the token can be transformed back into the user.id .And because of the secret helps to detect if the token has been Tampered(changed)
+      const authtoken = jwt.sign(data, JWT_SECRET);
+      res.json({  authtoken: authtoken });
+    } 
+    catch (error) {
       console.error(error);
       res.status(500).send("Some error occured");
     }
   }
 );
+//ROUTE 2:Create a User using:POST "/api/contractor/login".Doesn't require login
+router.post("/login", [
+  body("password", "Password cannot be black").exists(),
+  body("email", "Enter a valid email").isEmail(),
+],
+async (req,res)=>{
+       const errors = validationResult(req);
+       // If error is empty is false then there is error so the if statement cathes the error.
+       if (!errors.isEmpty()) {
+         return res.status(400).json({ errors: errors.array() });
+       }
 
+       const { email, password } = req.body;
+           try {
+             let contractor = await Contractor.findOne({ email });
+             if (!contractor) {
+               return res.status(400).json({
+                 error: "Please try to login with correct credentials",
+               });
+             }
+             const passwordCompare = await bcrypt.compare(
+               password,
+               contractor.password
+             );
+             if (!passwordCompare) {
+               return res.status(400).json({
+                 error: "Please try to login with correct credentials",
+               });
+             }
+
+             // The following code generates an authentication token which is provided to the user
+             const data = {
+               contractor: {
+                 id: contractor.id,
+               },
+             };
+             const authtoken = jwt.sign(data, JWT_SECRET);
+             res.json({  authtoken: authtoken });
+           } catch (error) {
+             console.error(error);
+             res.status(500).send("Internal server error");
+           }
+});
 module.exports=router;
