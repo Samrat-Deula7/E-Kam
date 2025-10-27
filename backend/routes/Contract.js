@@ -99,14 +99,14 @@ async (req,res)=>{
              }
 
              // The following code generates an authentication token which is provided to the user
-            //  const data = {
-            //    contractor: {
-            //      id: contractor.id,
-            //    },
-            //  };
-            //  const authtoken = jwt.sign(data, JWT_SECRET);
-            //  res.json({  authtoken: authtoken });
-             res.json(contractor.id);
+             const data = {
+               contractor: {
+                 id: contractor.id,
+               },
+             };
+             const authtoken = jwt.sign(data, JWT_SECRET);
+             res.json({  authtoken: authtoken,contractorId:contractor.id });
+            //  res.json(contractor.id);
            } catch (error) {
              console.error(error);
              res.status(500).send("Internal server error");
@@ -115,22 +115,34 @@ async (req,res)=>{
 
 //ROUTE 3: Contractor's data retrived through the use of _id to do CURD operatins login required :/api/contractor/fetchdata
 router.get("/fetchdata", fetchcontractor, async (req, res) => {
-  try {
-    res.json({ contractor: req.contractor });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Some error occured");
-  }
+    try {
+      const contractorsId = await req.headers["contractor-id"];
+      const contractor = await Contractor.findOne({ _id: contractorsId });
+
+          if (!contractor) {
+            return res.status(404).json({ error: "Contractor not found" });
+          }
+
+          res.json(contractor)
+
+      res.json(req.contractor);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Some error occured");
+    }
 });
+
 
   //ROUTE 4:getting all data for the public to see
   router.get("/fetchalldata",async(req,res)=>{
     try {
-        let contractor=await Contractor.find();
-        res.json({contractor:contractor});
+        let contractor = await Contractor.find();
+        res.json(contractor);
     } catch (error) {
         res.status(500).send("Some error occured");
     }
+
+
   })
 
 
