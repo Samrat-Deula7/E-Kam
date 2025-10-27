@@ -116,12 +116,22 @@ async (req,res)=>{
 //ROUTE 3: Contractor's data retrived through the use of _id to do CURD operatins login required :/api/contractor/fetchdata
 router.get("/fetchdata", fetchcontractor, async (req, res) => {
   try {
-    res.json({contractor: req.contractor});
+    res.json({ contractor: req.contractor });
   } catch (error) {
     console.error(error);
     res.status(500).send("Some error occured");
   }
 });
+
+  //ROUTE 4:getting all data for the public to see
+  router.get("/fetchalldata",async(req,res)=>{
+    try {
+        let contractor=await Contractor.find();
+        res.json({contractor:contractor});
+    } catch (error) {
+        res.status(500).send("Some error occured");
+    }
+  })
 
 
 module.exports=router;
