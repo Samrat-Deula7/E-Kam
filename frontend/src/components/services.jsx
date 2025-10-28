@@ -18,7 +18,7 @@ return (
 
     {/* "max-h-[1000px] overflow-hidden" This tailwind styling in sures that no matter how many cards we have only certain numbers of it will be shown */}
     
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  place-items-center mt-6 mx-6 my-3 max-h-[1000px] overflow-hidden">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  place-items-center mt-6 mx-6 my-3 max-h-[1000px] overflow-hidden">
       <Card />
       <Card />
       <Card />
