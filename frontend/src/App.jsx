@@ -12,7 +12,7 @@ import { useEffect } from "react";
 function App() {
   const [menuOpen, setmenuOpen] = useState(false);
   const [contractorBtn, setcontractorBtn] = useState(false);
-
+  const [signupBtn,setSignupBtn]=useState(false);
   // The following useEffect prevents the page form scrolling when the hamburger icon is open
 
   useEffect(() => {
@@ -46,20 +46,16 @@ function App() {
         <Signup
           contractorBtn={contractorBtn}
           setcontractorBtn={setcontractorBtn}
+          setSignupBtn={setSignupBtn}
+        />
+        <Login
+          setcontractorBtn={setcontractorBtn}
+          signupBtn={signupBtn}
+          setSignupBtn={setSignupBtn}
         />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route
-            path="/login"
-            element={
-              <Login
-                contractorBtn={contractorBtn}
-                setcontractorBtn={setcontractorBtn}
-              />
-            }
-          />
-          <Route path="/signup" element={<Signup />} />
         </Routes>
         <Footer />
       </Router>

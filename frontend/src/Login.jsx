@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
 
-const Login = ({ setcontractorBtn, contractorBtn }) => {
-      let navigate = useNavigate();
+const Login = ({
+  setcontractorBtn,
+  signupBtn,
+  setSignupBtn,
+}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -10,7 +11,7 @@ const Login = ({ setcontractorBtn, contractorBtn }) => {
   return (
     <div
       className={`fixed top-0 left-0 max-w-screen w-full bg-[#181C14] z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${
-        contractorBtn
+        signupBtn
           ? "h-screen opacity-100 pointer-events-auto"
           : "h-0 opacity-0 pointer-events-none"
       }`}
@@ -20,7 +21,9 @@ const Login = ({ setcontractorBtn, contractorBtn }) => {
           Log in to your account
         </h2>
         <button
-          onClick={() =>{ setcontractorBtn(false);navigate("/")}}
+          onClick={() => {
+            setSignupBtn(false);
+          }}
           className="absolute top-6 right-6 text-white text-3xl focus:outline-none cursor-pointer "
           aria-label="Close button"
         >
@@ -34,7 +37,7 @@ const Login = ({ setcontractorBtn, contractorBtn }) => {
           <div className="relative">
             <input
               type="email"
-              id="email"
+              id="login-email"
               name="email"
               required
               // value={formData.email}
@@ -47,7 +50,7 @@ const Login = ({ setcontractorBtn, contractorBtn }) => {
           <div className="relative">
             <input
               type="password"
-              id="password"
+              id="login-password"
               name="password"
               required
               // value={formData.email}
@@ -64,13 +67,15 @@ const Login = ({ setcontractorBtn, contractorBtn }) => {
             Log in
           </button>
         </form>
-        <Link
-          to="/signup"
-          onClick={() => setcontractorBtn(true)}
+        <button
+          onClick={() => {
+            setcontractorBtn(true);
+            setSignupBtn(false);
+          }}
           className="text-blue-600 underline"
         >
           Don't have an account?
-        </Link>
+        </button>
       </div>
     </div>
   );

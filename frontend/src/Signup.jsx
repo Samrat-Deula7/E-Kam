@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
 
 
-const Signup = ({ contractorBtn, setcontractorBtn }) => {
-    let navigate = useNavigate();
+const Signup = ({
+  setcontractorBtn,
+  contractorBtn,
+  setSignupBtn,
+}) => {
 
-    const handleSubmit=(e)=>{
-        e.preventDefault();
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <div
       className={`fixed top-0 left-0 max-w-screen w-full bg-[#181C14] z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${
@@ -21,7 +22,9 @@ const Signup = ({ contractorBtn, setcontractorBtn }) => {
           Sign Up
         </h2>
         <button
-          onClick={() =>{ setcontractorBtn(false); navigate("/")}}
+          onClick={() => {
+            setcontractorBtn(false);
+          }}
           className="absolute top-6 right-6 text-white text-3xl focus:outline-none cursor-pointer "
           aria-label="Close button"
         >
@@ -139,13 +142,12 @@ const Signup = ({ contractorBtn, setcontractorBtn }) => {
           </button>
         </form>
 
-        <Link
-          to="/login"
-          onClick={() => setcontractorBtn(true)}
+        <button
+          onClick={() =>{ setcontractorBtn(false);setSignupBtn(true)}}
           className="text-blue-600 underline"
         >
           Already got an account ?
-        </Link>
+        </button>
       </div>
     </div>
   );
