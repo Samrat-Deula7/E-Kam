@@ -143,8 +143,11 @@ const Signup = ({
         </form>
 
         <button
-          onClick={() =>{ setcontractorBtn(false);setSignupBtn(true)}}
-          className="text-blue-600 underline"
+          onClick={() => {
+            setcontractorBtn(false);
+            setSignupBtn(true);
+          }}
+          className="text-blue-600 underline cursor-pointer"
         >
           Already got an account ?
         </button>

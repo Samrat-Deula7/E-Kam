@@ -72,7 +72,7 @@ const Login = ({
             setcontractorBtn(true);
             setSignupBtn(false);
           }}
-          className="text-blue-600 underline"
+          className="text-blue-600 underline cursor-pointer"
         >
           Don't have an account?
         </button>
