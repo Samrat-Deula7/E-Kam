@@ -6,11 +6,7 @@ const Navbar = (
 ) => {
   const location = useLocation();
 
-  // The following useEffect prevents the page form scrolling when the hamburger icon is open
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    document.body.style.overflow = contractorBtn ? "hidden" : "";
-  }, [menuOpen]);
+
   return (
     <nav className="fixed top-0 max-w-screen z-40 bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg">
       <div className="min-w-screen mx-auto px-4">

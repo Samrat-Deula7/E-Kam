@@ -15,6 +15,15 @@ const Signup = ({ contractorBtn, setcontractorBtn }) => {
       <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-linear-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent text-center">
         Sign Up
       </h2>
+      {/* {
+    "name":"Sammm3",
+    "email":"Sammm3@gmail.com",
+    "password":"000000",
+    "phoneno":9909999845,
+    "experience":"4years",
+    "cost":"1000 to 3000",
+    "work":"web dev1"
+} */}
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div className="relative">
           <input
@@ -37,10 +46,70 @@ const Signup = ({ contractorBtn, setcontractorBtn }) => {
             // value={formData.email}
             className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
             placeholder="example@gmail.com"
-             // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-
+            // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
         </div>
+        <div className="relative">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            // value={formData.email}
+            className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+            placeholder="Enter your password"
+            // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          />
+        </div>
+        <div className="relative">
+          <input
+            type="text"
+            id="phoneno"
+            name="phoneno"
+            required
+            // value={formData.email}
+            className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+            placeholder="Enter your phone no"
+            // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          />
+        </div>
+        <div className="relative">
+          <input
+            type="text"
+            id="experience"
+            name="experience"
+            required
+            // value={formData.email}
+            className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+            placeholder="Enter your work experience"
+            // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          />
+        </div>
+        <div className="relative">
+          <input
+            type="text"
+            id="cost"
+            name="cost"
+            required
+            // value={formData.email}
+            className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+            placeholder="Enter your price range"
+            // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          />
+        </div>
+        <div className="relative">
+          <input
+            type="text"
+            id="work"
+            name="work"
+            required
+            // value={formData.email}
+            className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+            placeholder="Enter what work you do"
+            // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          />
+        </div>
+
         <div className="relative">
           <textarea
             id="message"
