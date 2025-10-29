@@ -1,12 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
 import { use, useEffect } from "react";
 
-const Navbar = ({ menuOpen, setmenuOpen }) => {
-  const location=useLocation();
-  
+const Navbar = (
+  { menuOpen, setmenuOpen, contractorBtn, setcontractorBtn }
+) => {
+  const location = useLocation();
+
   // The following useEffect prevents the page form scrolling when the hamburger icon is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    document.body.style.overflow = contractorBtn ? "hidden" : "";
   }, [menuOpen]);
   return (
     <nav className="fixed top-0 max-w-screen z-40 bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg">
@@ -41,9 +44,13 @@ const Navbar = ({ menuOpen, setmenuOpen }) => {
             </Link>
           </div>
 
-          <button className="border border-gray-500/50 py-3 px-6 cursor-pointer rounded font-medium tracking-all duration-200 text-gray-600 hover:text-stone-200  hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10">
+          <button
+            className="border border-gray-500/50 py-3 px-6 cursor-pointer rounded font-medium tracking-all duration-200 text-gray-600 hover:text-stone-200  hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10"
+            onClick={() => setcontractorBtn((prev) => !prev)}
+          >
             Become a Contractor
           </button>
+
           {/* This is the mobile menu */}
           <div
             className=" w-7 h-5 relative left-0 cursor-pointer z-40 md:hidden"

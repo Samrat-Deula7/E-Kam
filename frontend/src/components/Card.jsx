@@ -1,3 +1,5 @@
+import User from "../assets/User.png"
+
 const Card = () => {
   return (
     <div className="flex flex-col items-center  bg-stone-600 h-80 w-80 rounded-2xl px-4 py-3 mb-5 ml-3 mr-3">
@@ -6,7 +8,7 @@ const Card = () => {
         <div className="w-23 h-23 md:w-28 md:h-28 lg:w-31 lg:h-31  rounded-full bg-linear-to-r from-stone-600 to-white ">
           <div className="w-full h-full flex justify-center items-center ">
             <img
-              src=""
+              src={User}
               alt=""
               className="w-20 h-20 md:w-25 md:h-25 lg:w-28 lg:h-28 bg-blue-600   bg-cover bg-center rounded-full overflow-clip"
             />
