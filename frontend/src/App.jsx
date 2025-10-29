@@ -50,7 +50,16 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={
+              <Login
+                contractorBtn={contractorBtn}
+                setcontractorBtn={setcontractorBtn}
+              />
+            }
+          />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
         <Footer />
       </Router>

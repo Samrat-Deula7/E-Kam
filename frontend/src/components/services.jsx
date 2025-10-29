@@ -13,7 +13,7 @@ return (
         className="w-full h-12 bg-white/5 border border-white/10 border-r-0 rounded-l-full px-4 py-3 text-white transition focus:outline-none focus:border-gray-600 focus:bg-stone-400/5"
         placeholder="Search"
       />
-      <i class="fa-solid fa-magnifying-glass h-12 bg-white/5 border  border-white/10 border-l-0 rounded-r-full  px-8 py-3 "></i>
+      <i className="fa-solid fa-magnifying-glass h-12 bg-white/5 border  border-white/10 border-l-0 rounded-r-full  px-8 py-3 "></i>
     </div>
 
     {/* "max-h-[1000px] overflow-hidden" This tailwind styling in sures that no matter how many cards we have only certain numbers of it will be shown */}

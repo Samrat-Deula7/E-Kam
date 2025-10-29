@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+
 
 const Signup = ({ contractorBtn, setcontractorBtn }) => {
+    let navigate = useNavigate();
+
     const handleSubmit=(e)=>{
         e.preventDefault();
     }
@@ -13,11 +17,11 @@ const Signup = ({ contractorBtn, setcontractorBtn }) => {
       }`}
     >
       <div className="w-96 md:w-xl lg:w-2xl xl:w-3xl text-center">
-        <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-linear-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent text-center">
+        <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent text-center">
           Sign Up
         </h2>
         <button
-          onClick={() => setcontractorBtn(false)}
+          onClick={() =>{ setcontractorBtn(false); navigate("/")}}
           className="absolute top-6 right-6 text-white text-3xl focus:outline-none cursor-pointer "
           aria-label="Close button"
         >
@@ -134,7 +138,12 @@ const Signup = ({ contractorBtn, setcontractorBtn }) => {
             Sign Up
           </button>
         </form>
-        <Link to="/login" onClick={() => setcontractorBtn(false)}>
+
+        <Link
+          to="/login"
+          onClick={() => setcontractorBtn(true)}
+          className="text-blue-600 underline"
+        >
           Already got an account ?
         </Link>
       </div>
