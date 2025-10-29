@@ -15,15 +15,13 @@ const Signup = ({ contractorBtn, setcontractorBtn }) => {
       <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-linear-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent text-center">
         Sign Up
       </h2>
-      {/* {
-    "name":"Sammm3",
-    "email":"Sammm3@gmail.com",
-    "password":"000000",
-    "phoneno":9909999845,
-    "experience":"4years",
-    "cost":"1000 to 3000",
-    "work":"web dev1"
-} */}
+      <button
+        onClick={() => setcontractorBtn(false)}
+        className="absolute top-6 right-6 text-white text-3xl focus:outline-none cursor-pointer "
+        aria-label="Close button"
+      >
+        &times;
+      </button>
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div className="relative">
           <input
