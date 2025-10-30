@@ -52,10 +52,11 @@ const Signup = ({
          console.log(result);
          if (result.Success) {
            // Save the auth token and redirect
-          //  localStorage.setItem("token", result.authtoken);
+          alert("submit button was clicked");
+
+           localStorage.setItem("token", result.authtoken);
            navigate("/login");
           //  props.showAlert("Successfully created your account", "success");
-     alert("submit button was clicked");
          } else {
           //  props.showAlert("Invalid Details", "danger");
           console.log("couldnot save data")
