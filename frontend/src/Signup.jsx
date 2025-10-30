@@ -1,14 +1,76 @@
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = ({
   setcontractorBtn,
   contractorBtn,
   setSignupBtn,
 }) => {
+    let navigate = useNavigate();
 
+    const [credentials, setCredentials] = useState({
+      name: "",
+      email: "",
+      password: "",
+      cpassword: "",
+      phoneno: "",
+      experience: "",
+      cost: "",
+      work:"",
+    });
+
+     const onChange = (e) => {
+       setCredentials({ ...credentials, [e.target.name]: e.target.value });
+     };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+   const createUser = async () => {
+     if (credentials.password == credentials.cpassword) {
+       // API Call
+       const url = "http://localhost:3000/api/contractor/createcontractor";
+       const { name, email, password, phoneno, experience, cost, work } =
+         credentials;
+       try {
+         const response = await fetch(url, {
+           method: "POST",
+           headers: {
+             "Content-Type": "application/json",
+           },
+           body: JSON.stringify({
+             name,
+             email,
+             password,
+             phoneno,
+             experience,
+             cost,
+             work
+           }),
+         });
+         const result = await response.json();
+         console.log(result);
+         if (result.Success) {
+           // Save the auth token and redirect
+          //  localStorage.setItem("token", result.authtoken);
+           navigate("/login");
+          //  props.showAlert("Successfully created your account", "success");
+     alert("submit button was clicked");
+         } else {
+          //  props.showAlert("Invalid Details", "danger");
+          console.log("couldnot save data")
+         }
+       } catch (error) {
+         console.error(error.message);
+       }
+     } else {
+      //  props.showAlert("Both passwords should be same", "danger");
+      console.log("couldnot save data");
+     }
+
+
+   };
+
   return (
     <div
       className={`fixed top-0 left-0 max-w-screen w-full bg-[#181C14] z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${
@@ -31,7 +93,7 @@ const Signup = ({
           &times;
         </button>
 
-        <form onSubmit={handleSubmit} className="text-center">
+        <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 xl:grid-cols-2  place-items-center">
             <div className="relative">
               <input
@@ -42,7 +104,7 @@ const Signup = ({
                 // value={formData.name}
                 className="w-90 mb-2 md:w-94  bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Name...."
-                // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={onChange}
               />
             </div>
             <div className="relative">
@@ -54,7 +116,7 @@ const Signup = ({
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="example@gmail.com"
-                // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={onChange}
               />
             </div>
 
@@ -67,19 +129,19 @@ const Signup = ({
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your password"
-                // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={onChange}
               />
             </div>
             <div className="relative">
               <input
-                type="cpassword"
+                type="password"
                 id="cpassword"
                 name="cpassword"
                 required
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Confirm password"
-                // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={onChange}
               />
             </div>
             <div className="relative">
@@ -91,7 +153,7 @@ const Signup = ({
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your phone no"
-                // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={onChange}
               />
             </div>
 
@@ -104,7 +166,7 @@ const Signup = ({
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your work experience"
-                // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={onChange}
               />
             </div>
             <div className="relative">
@@ -116,7 +178,7 @@ const Signup = ({
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your price range"
-                // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={onChange}
               />
             </div>
 
@@ -129,17 +191,19 @@ const Signup = ({
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter what work you do"
-                // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={onChange}
               />
             </div>
           </div>
 
           <button
+            onClick={createUser}
             type="submit"
             className="w-90 md:w-full mb-2 bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
           >
             Sign Up
           </button>
+          
         </form>
 
         <button
