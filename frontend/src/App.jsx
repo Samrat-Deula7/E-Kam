@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar"
 import MobileMenu from "./MobileMenu";
 import Home from "./components/Home";
+import Admin from "./components/Admin";
 import Services from "./components/services";
 import Footer from "./footer";
 import { useState } from "react";
@@ -58,6 +59,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
           <Footer />
         </Router>
