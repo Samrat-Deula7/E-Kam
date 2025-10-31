@@ -28,6 +28,7 @@ const Login = ({ setcontractorBtn, signupBtn, setSignupBtn }) => {
         // Save the auth token and redirect
         alert("logged in")
         localStorage.setItem("token", result.authtoken);
+         localStorage.setItem("contractorId",result.contractorId);
          setSignupBtn(false);
          setCredentials({
           email:"",

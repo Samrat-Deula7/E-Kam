@@ -8,6 +8,7 @@ import { useState } from "react";
 import Signup from "./Signup";
 import Login from "./Login";
 import { useEffect } from "react";
+import ContractorState from "../context/ContractorState";
 
 function App() {
   const [menuOpen, setmenuOpen] = useState(false);
@@ -35,30 +36,32 @@ function App() {
   }, [menuOpen, contractorBtn]);
   return (
     <>
-      <Router>
-        <Navbar
-          menuOpen={menuOpen}
-          setmenuOpen={setmenuOpen}
-          contractorBtn={contractorBtn}
-          setcontractorBtn={setcontractorBtn}
-        />
-        <MobileMenu menuOpen={menuOpen} setmenuOpen={setmenuOpen} />
-        <Signup
-          contractorBtn={contractorBtn}
-          setcontractorBtn={setcontractorBtn}
-          setSignupBtn={setSignupBtn}
-        />
-        <Login
-          setcontractorBtn={setcontractorBtn}
-          signupBtn={signupBtn}
-          setSignupBtn={setSignupBtn}
-        />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-        </Routes>
-        <Footer />
-      </Router>
+      <ContractorState>
+        <Router>
+          <Navbar
+            menuOpen={menuOpen}
+            setmenuOpen={setmenuOpen}
+            contractorBtn={contractorBtn}
+            setcontractorBtn={setcontractorBtn}
+          />
+          <MobileMenu menuOpen={menuOpen} setmenuOpen={setmenuOpen} />
+          <Signup
+            contractorBtn={contractorBtn}
+            setcontractorBtn={setcontractorBtn}
+            setSignupBtn={setSignupBtn}
+          />
+          <Login
+            setcontractorBtn={setcontractorBtn}
+            signupBtn={signupBtn}
+            setSignupBtn={setSignupBtn}
+          />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </ContractorState>
     </>
   );
 }
