@@ -1,14 +1,27 @@
 import { useState } from "react";
+import { useEffect } from "react";
 
-const Login = ({ setcontractorBtn, signupBtn, setSignupBtn }) => {
+const Login = ({
+  setcontractorBtn,
+  signupBtn,
+  setSignupBtn,
+  setIsLoggedIn,
+}) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      // Optional: validate token with backend here
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   const createUser = async () => {
     setSignupBtn(true);
-
     // API Call
     const url = "http://localhost:3000/api/contractor/login";
     try {
@@ -26,14 +39,15 @@ const Login = ({ setcontractorBtn, signupBtn, setSignupBtn }) => {
       console.log(result);
       if (result) {
         // Save the auth token and redirect
-        alert("logged in")
+        alert("logged in");
+        setIsLoggedIn(true);
         localStorage.setItem("token", result.authtoken);
-         localStorage.setItem("contractorId",result.contractorId);
-         setSignupBtn(false);
-         setCredentials({
-          email:"",
-          password:""
-         })
+        localStorage.setItem("contractorId", result.contractorId);
+        setSignupBtn(false);
+        setCredentials({
+          email: "",
+          password: "",
+        });
         // props.showAlert("Logged into your account successfully", "success");
       } else {
         // props.showAlert("Invalid credentials", "danger");

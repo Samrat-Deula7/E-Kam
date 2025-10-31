@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./Navbar"
+import Navbar from "./Navbar";
 import MobileMenu from "./MobileMenu";
 import Home from "./components/Home";
 import Admin from "./components/Admin";
@@ -14,7 +14,8 @@ import ContractorState from "../context/ContractorState";
 function App() {
   const [menuOpen, setmenuOpen] = useState(false);
   const [contractorBtn, setcontractorBtn] = useState(false);
-  const [signupBtn,setSignupBtn]=useState(false);
+  const [signupBtn, setSignupBtn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // The following useEffect prevents the page form scrolling when the hamburger icon is open
 
   useEffect(() => {
@@ -44,6 +45,8 @@ function App() {
             setmenuOpen={setmenuOpen}
             contractorBtn={contractorBtn}
             setcontractorBtn={setcontractorBtn}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
           />
           <MobileMenu menuOpen={menuOpen} setmenuOpen={setmenuOpen} />
           <Signup
@@ -55,6 +58,7 @@ function App() {
             setcontractorBtn={setcontractorBtn}
             signupBtn={signupBtn}
             setSignupBtn={setSignupBtn}
+            setIsLoggedIn={setIsLoggedIn}
           />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -68,4 +72,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

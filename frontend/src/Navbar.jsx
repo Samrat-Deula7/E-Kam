@@ -1,12 +1,34 @@
 import { Link, useLocation } from "react-router-dom";
 import { use, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = (
-  { menuOpen, setmenuOpen, contractorBtn, setcontractorBtn }
-) => {
+const Navbar = ({
+  menuOpen,
+  setmenuOpen,
+  contractorBtn,
+  setcontractorBtn,
+  isLoggedIn,
+  setIsLoggedIn,
+}) => {
+  const navigation = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      // Optional: validate token with backend here
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("contractorId");
+    setIsLoggedIn(false);
+    navigation("/");
+  };
   return (
     <nav className="fixed top-0 max-w-screen z-40 bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg">
       <div className="min-w-screen mx-auto px-4">
@@ -38,13 +60,39 @@ const Navbar = (
             >
               Services
             </Link>
+            <Link
+              to="/admin"
+              className={` md:text-xl lg:text-3xl bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent cursor-pointer hover:text-stone-200 ${
+                location.pathname === "/admin" ? "text-white" : ""
+              }${
+                isLoggedIn
+                  ? "  pointer-events-auto"
+                  : "h-0 opacity-0 pointer-events-none"
+              }`}
+            >
+              Admin
+            </Link>
           </div>
 
           <button
-            className="border border-gray-500/50 py-3 px-6 cursor-pointer rounded font-medium tracking-all duration-200 text-gray-600 hover:text-stone-200  hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10"
+            className={`border border-gray-500/50 py-3 px-6 cursor-pointer rounded font-medium tracking-all duration-200 text-gray-600 hover:text-stone-200  hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10${
+              !isLoggedIn
+                ? "  pointer-events-auto"
+                : "h-0 opacity-0 pointer-events-none"
+            }`}
             onClick={() => setcontractorBtn((prev) => !prev)}
           >
             Become a Contractor
+          </button>
+          <button
+            className={`border border-gray-500/50 py-3 px-6 cursor-pointer rounded font-medium tracking-all duration-200 text-gray-600 hover:text-stone-200  hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10${
+              isLoggedIn
+                ? "  pointer-events-auto"
+                : "h-0 opacity-0 pointer-events-none"
+            }`}
+            onClick={handleLogout}
+          >
+            Log Out
           </button>
 
           {/* This is the mobile menu */}
