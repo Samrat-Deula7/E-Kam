@@ -49,7 +49,11 @@ function App() {
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
           />
-          <MobileMenu menuOpen={menuOpen} setmenuOpen={setmenuOpen} />
+          <MobileMenu
+            menuOpen={menuOpen}
+            setmenuOpen={setmenuOpen}
+            isLoggedIn={isLoggedIn}
+          />
           <Signup
             contractorBtn={contractorBtn}
             setcontractorBtn={setcontractorBtn}
@@ -69,7 +73,7 @@ function App() {
             admin page by massing the path name in the URL like adding /admin to
             URl ex:http://localhost:5173/admin
             So now if anyone tries to do that then it will redirect to"/" */}
-            
+
             <Route
               path="/admin"
               element={
