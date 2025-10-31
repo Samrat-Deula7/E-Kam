@@ -10,6 +10,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import { useEffect } from "react";
 import ContractorState from "../context/ContractorState";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const [menuOpen, setmenuOpen] = useState(false);
@@ -63,7 +64,20 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/admin" element={<Admin />} />
+
+            {/* The protected route is there to not allow user to get access of
+            admin page by massing the path name in the URL like adding /admin to
+            URl ex:http://localhost:5173/admin
+            So now if anyone tries to do that then it will redirect to"/" */}
+            
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <Admin />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
           <Footer />
         </Router>
