@@ -71,7 +71,7 @@ const Admin = () => {
           <h2 className="mt-4 text-red-500">
             Want to delete your data??...{" "}
             <span>
-              <i class="fa-solid fa-trash cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"></i>
+              <i className="fa-solid fa-trash cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"></i>
             </span>
           </h2>
         </div>
