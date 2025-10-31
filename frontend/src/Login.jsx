@@ -1,10 +1,46 @@
+import { useState } from "react";
 
-const Login = ({
-  setcontractorBtn,
-  signupBtn,
-  setSignupBtn,
-}) => {
+const Login = ({ setcontractorBtn, signupBtn, setSignupBtn }) => {
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
 
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+  const createUser = async () => {
+    setSignupBtn(true);
+
+    // API Call
+    const url = "http://localhost:3000/api/contractor/login";
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: credentials.email,
+          password: credentials.password,
+        }),
+      });
+      const result = await response.json();
+      console.log(result);
+      if (result) {
+        // Save the auth token and redirect
+        alert("logged in")
+        localStorage.setItem("token", result.authtoken);
+         setSignupBtn(false);
+         setCredentials({
+          email:"",
+          password:""
+         })
+        // props.showAlert("Logged into your account successfully", "success");
+      } else {
+        // props.showAlert("Invalid credentials", "danger");
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -44,6 +80,8 @@ const Login = ({
               className="w-90 md:w-120 mb-2  bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
               placeholder="example@gmail.com"
               // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              onChange={onChange}
+              value={credentials.email}
             />
           </div>
 
@@ -57,10 +95,13 @@ const Login = ({
               className="w-90 md:w-120  mb-2  bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
               placeholder="Enter your password"
               // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              onChange={onChange}
+              value={credentials.password}
             />
           </div>
 
           <button
+            onClick={createUser}
             type="submit"
             className="w-90 md:w-120  mb-2 bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
           >

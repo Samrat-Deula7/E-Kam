@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Signup = ({
   setcontractorBtn,
   contractorBtn,
   setSignupBtn,
 }) => {
-    let navigate = useNavigate();
 
     const [credentials, setCredentials] = useState({
       name: "",
@@ -27,48 +25,58 @@ const Signup = ({
   };
 
    const createUser = async () => {
-     if (credentials.password == credentials.cpassword) {
-       // API Call
-       const url = "http://localhost:3000/api/contractor/createcontractor";
-       const { name, email, password, phoneno, experience, cost, work } =
-         credentials;
-       try {
-         const response = await fetch(url, {
-           method: "POST",
-           headers: {
-             "Content-Type": "application/json",
-           },
-           body: JSON.stringify({
-             name,
-             email,
-             password,
-             phoneno,
-             experience,
-             cost,
-             work
-           }),
-         });
-         const result = await response.json();
-         console.log(result);
-         if (result.Success) {
-           // Save the auth token and redirect
-          alert("submit button was clicked");
+        try {
+          if (credentials.password == credentials.cpassword) {
+            // API Call
+            const url = "http://localhost:3000/api/contractor/createcontractor";
+            const { name, email, password, phoneno, experience, cost, work } =
+              credentials;
 
-           localStorage.setItem("token", result.authtoken);
-           navigate("/login");
-          //  props.showAlert("Successfully created your account", "success");
-         } else {
-          //  props.showAlert("Invalid Details", "danger");
-          console.log("couldnot save data")
-         }
-       } catch (error) {
-         console.error(error.message);
-       }
-     } else {
-      //  props.showAlert("Both passwords should be same", "danger");
-      console.log("couldnot save data");
-     }
-
+            const response = await fetch(url, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                password,
+                phoneno,
+                experience,
+                cost,
+                work,
+              }),
+            });
+            const result = await response.json();
+            console.log(result);
+            if (result) {
+              // Save the auth token and redirect
+              setCredentials({
+                name: "",
+                email: "",
+                password: "",
+                cpassword: "",
+                phoneno: "",
+                experience: "",
+                cost: "",
+                work: "",
+              });
+              setcontractorBtn(false);
+              setSignupBtn(true);
+              localStorage.setItem("token", result.authtoken);
+              alert("Account Created")
+              //  props.showAlert("Successfully created your account", "success");
+            } else {
+              //  props.showAlert("Invalid Details", "danger");
+              alert("couldnot save data");
+            }
+          } else {
+            //  props.showAlert("Both passwords should be same", "danger");
+            alert("Both password must be same");
+          }
+        } catch (error) {
+          alert(error.message);
+        }
 
    };
 
@@ -101,11 +109,11 @@ const Signup = ({
                 type="text"
                 id="name"
                 name="name"
-                required
-                // value={formData.name}
+                value={credentials.name}
                 className="w-90 mb-2 md:w-94  bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Name...."
                 onChange={onChange}
+                required
               />
             </div>
             <div className="relative">
@@ -118,6 +126,7 @@ const Signup = ({
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="example@gmail.com"
                 onChange={onChange}
+                value={credentials.email}
               />
             </div>
 
@@ -131,6 +140,7 @@ const Signup = ({
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your password"
                 onChange={onChange}
+                value={credentials.password}
               />
             </div>
             <div className="relative">
@@ -143,6 +153,7 @@ const Signup = ({
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Confirm password"
                 onChange={onChange}
+                value={credentials.cpassword}
               />
             </div>
             <div className="relative">
@@ -155,6 +166,7 @@ const Signup = ({
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your phone no"
                 onChange={onChange}
+                value={credentials.phoneno}
               />
             </div>
 
@@ -168,6 +180,7 @@ const Signup = ({
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your work experience"
                 onChange={onChange}
+                value={credentials.experience}
               />
             </div>
             <div className="relative">
@@ -180,6 +193,7 @@ const Signup = ({
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your price range"
                 onChange={onChange}
+                value={credentials.cost}
               />
             </div>
 
@@ -193,6 +207,7 @@ const Signup = ({
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter what work you do"
                 onChange={onChange}
+                value={credentials.work}
               />
             </div>
           </div>
@@ -204,7 +219,6 @@ const Signup = ({
           >
             Sign Up
           </button>
-          
         </form>
 
         <button
