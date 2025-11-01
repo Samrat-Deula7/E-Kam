@@ -11,12 +11,15 @@ import Login from "./Login";
 import { useEffect } from "react";
 import ContractorState from "../context/ContractorState";
 import ProtectedRoute from "./ProtectedRoute";
+import UpdateData from "./UpdateData";
 
 function App() {
   const [menuOpen, setmenuOpen] = useState(false);
   const [contractorBtn, setcontractorBtn] = useState(false);
   const [signupBtn, setSignupBtn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [updateOpen,isUpdateOpen]=useState(false);
+  
   // The following useEffect prevents the page form scrolling when the hamburger icon is open
 
   useEffect(() => {
@@ -65,6 +68,7 @@ function App() {
             setSignupBtn={setSignupBtn}
             setIsLoggedIn={setIsLoggedIn}
           />
+          <UpdateData updateOpen={updateOpen} isUpdateOpen={isUpdateOpen} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
@@ -78,7 +82,7 @@ function App() {
               path="/admin"
               element={
                 <ProtectedRoute>
-                  <Admin />
+                  <Admin isUpdateOpen={isUpdateOpen} />
                 </ProtectedRoute>
               }
             />

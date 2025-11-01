@@ -8,10 +8,10 @@ const Login = ({
   setIsLoggedIn,
 }) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+ 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      // Optional: validate token with backend here
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
@@ -58,6 +58,12 @@ const Login = ({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+     if (form.checkValidity()) {
+       // proceed with custom logic
+     } else {
+       form.reportValidity(); // shows native validation messages
+     }
+
   };
   return (
     <div
@@ -117,6 +123,7 @@ const Login = ({
 
           <button
             onClick={createUser}
+            id="login"
             type="submit"
             className="w-90 md:w-120  mb-2 bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
           >

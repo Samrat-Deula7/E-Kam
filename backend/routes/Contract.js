@@ -144,6 +144,7 @@ router.get("/fetchalldata", async (req, res) => {
 });
 
 //ROUTE 5:update an existing contractor info using:put  /api/contractor/updatedata/:id, login required.
+        // The fetchcontractor is an middle ware that does the authentication using auth token
 router.put("/updatedata/:id", fetchcontractor, async (req, res) => {
   const { name, email, password, phoneno, experience, cost, work } = req.body;
   const newContractor = {};

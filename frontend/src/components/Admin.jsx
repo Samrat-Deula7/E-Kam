@@ -1,4 +1,4 @@
-const Admin = () => {
+const Admin = ({ isUpdateOpen }) => {
   return (
     <div className="pt-16  min-h-screen px-8 flex flex-col items-center justify-center w-full">
       <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center">
@@ -14,7 +14,10 @@ const Admin = () => {
           <h2 className="mb-4">
             Do You want to update anything??...{" "}
             <span>
-              <i className="fa-solid fa-pen-to-square cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"></i>
+              <i
+                onClick={() => isUpdateOpen(true)}
+                className="fa-solid fa-pen-to-square cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"
+              ></i>
             </span>
           </h2>
 
@@ -70,6 +73,12 @@ const Admin = () => {
           </div>
           <h2 className="mt-4 text-red-500">
             Want to delete your data??...{" "}
+            <span>
+              <i className="fa-solid fa-trash cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"></i>
+            </span>
+          </h2>
+          <h2 className="mt-4 text-red-500">
+            Want to delete your account??...{" "}
             <span>
               <i className="fa-solid fa-trash cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"></i>
             </span>

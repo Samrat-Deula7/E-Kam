@@ -4,6 +4,7 @@ const Signup = ({
   setcontractorBtn,
   contractorBtn,
   setSignupBtn,
+  
 }) => {
 
     const [credentials, setCredentials] = useState({
