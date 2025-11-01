@@ -8,7 +8,7 @@ const Login = ({
   setIsLoggedIn,
 }) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
- 
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -37,7 +37,7 @@ const Login = ({
       });
       const result = await response.json();
       console.log(result);
-      if (result) {
+      if (result.authtoken && result.contractorId) {
         // Save the auth token and redirect
         alert("logged in");
         setIsLoggedIn(true);
@@ -51,6 +51,9 @@ const Login = ({
         // props.showAlert("Logged into your account successfully", "success");
       } else {
         // props.showAlert("Invalid credentials", "danger");
+        alert("Invalid Credentials");
+        setIsLoggedIn(false);
+        setSignupBtn(true);
       }
     } catch (error) {
       alert(error.message);
@@ -58,12 +61,6 @@ const Login = ({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-     if (form.checkValidity()) {
-       // proceed with custom logic
-     } else {
-       form.reportValidity(); // shows native validation messages
-     }
-
   };
   return (
     <div

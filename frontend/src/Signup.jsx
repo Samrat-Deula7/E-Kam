@@ -50,7 +50,7 @@ const Signup = ({
             });
             const result = await response.json();
             console.log(result);
-            if (result) {
+            if (result.authtoken) {
               // Save the auth token and redirect
               setCredentials({
                 name: "",
@@ -65,7 +65,7 @@ const Signup = ({
               setcontractorBtn(false);
               setSignupBtn(true);
               localStorage.setItem("token", result.authtoken);
-              alert("Account Created")
+              alert("Account Created");
               //  props.showAlert("Successfully created your account", "success");
             } else {
               //  props.showAlert("Invalid Details", "danger");
