@@ -50,6 +50,14 @@ const Admin = ({ setUpdateOpen }) => {
           <div className=" bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg mb-1 rounded px-2 py-4">
             <h2>
               <span className="text-gray-400 font-bold text-xl md:text-2xl ">
+                Password:
+              </span>{" "}
+              00000000
+            </h2>
+          </div>
+          <div className=" bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg mb-1 rounded px-2 py-4">
+            <h2>
+              <span className="text-gray-400 font-bold text-xl md:text-2xl ">
                 Experience:
               </span>{" "}
               4years

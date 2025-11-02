@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useFormik} from "formik"
+// import {useFormik} from "formik"
 
 const Signup = ({
   setcontractorBtn,
@@ -22,7 +22,7 @@ const Signup = ({
      const onChange = (e) => {
        setCredentials({ ...credentials, [e.target.name]: e.target.value });
      };
-  const handleSubmit = (e) => {
+  const preventDefault = (e) => {
     e.preventDefault();
   };
 
@@ -82,13 +82,13 @@ const Signup = ({
 
    };
 
-    const Formik = useFormik({
-      credentials: credentials,
-      onSubmit: (values) => {
-        console.log(values);
-      },
-    });
-    console.log(Formik);
+    // const {values,errors,handleBlur,handleChange,handleSubmit} = useFormik({
+    //   credentials: credentials,
+    //   onSubmit: (values) => {
+    //     console.log(values);
+    //   },
+    // });
+    // console.log(Formik);
 
   return (
     <div
@@ -112,7 +112,7 @@ const Signup = ({
           &times;
         </button>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={preventDefault}>
           <div className="grid grid-cols-1 xl:grid-cols-2  place-items-center">
             <div className="relative">
               <input

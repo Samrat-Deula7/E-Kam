@@ -5,6 +5,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
     const [credentials, setCredentials] = useState({
       name: "",
       email: "",
+      password: "",
       phoneno: "",
       experience: "",
       cost: "",
@@ -24,11 +25,11 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
       try {
           // API Call
           const url =` http://localhost:3000/api/contractor/updatedata/${id}`;
-          const { name, email,  phoneno, experience, cost, work } =
+          const { name, email, password, phoneno, experience, cost, work } =
             credentials;
 
           const response = await fetch(url, {
-            method: "PUT", 
+            method: "PUT",
             headers: {
               "Content-Type": "application/json",
               "auth-token":token
@@ -36,6 +37,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
             body: JSON.stringify({
               name,
               email,
+              password,
               phoneno,
               experience,
               cost,
@@ -49,6 +51,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
             setCredentials({
               name: "",
               email: "",
+              password: "",
               phoneno: "",
               experience: "",
               cost: "",
@@ -64,7 +67,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
        
       } catch (error) {
         alert(error.message);
-        
       }
     };
 
@@ -118,7 +120,19 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                 />
               </div>
 
-           
+              <div className="relative">
+                <input
+                  type="password"
+                  id="update-password"
+                  name="password"
+                  required
+                  // value={formData.email}
+                  className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+                  placeholder="Enter your password"
+                  onChange={onChange}
+                  value={credentials.password}
+                />
+              </div>
 
               <div className="relative">
                 <input

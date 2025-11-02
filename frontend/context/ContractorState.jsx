@@ -76,7 +76,7 @@ const ContractorState = (props) => {
       
 
   return (
-    <ContractorContext.Provider value={{ deleteData, editData, getData }}>
+    <ContractorContext.Provider value={{ deleteData,  getData }}>
       {props.children}
     </ContractorContext.Provider>
   );
