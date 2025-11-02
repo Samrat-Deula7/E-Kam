@@ -256,7 +256,7 @@ router.delete("/deletenote/:id", fetchcontractor, async (req, res) => {
     }
 
     note = await Contractor.findByIdAndDelete(req.params.id);
-    res.json({ Success: "Contractor data has been deleted", contractor: contractor });
+    res.json({  contractor: contractor });
   } catch (error) {
     console.error(error);
     res.status(500).send("Some error occured");

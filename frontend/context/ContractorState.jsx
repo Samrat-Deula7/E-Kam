@@ -1,13 +1,8 @@
 import ContractorContext from "./ContractorContext";
-import { useState } from "react";
+
 
 const ContractorState = (props) => {
       const host = "http://localhost:3000";
-      const contractorInitial = [];
-
-      const [Datas, setData] = useState(contractorInitial);
-
-     
 
       // Get the contractor details
       const getData = async () => {
@@ -27,7 +22,6 @@ const ContractorState = (props) => {
           }
 
           const result = await response.json();
-          setData(result);
           console.log(result);
         } catch (error) {
           console.error(error.message);
@@ -36,44 +30,32 @@ const ContractorState = (props) => {
 
       // Delete Data
       const deleteData = async (id) => {
+        const token=localStorage.getItem("token")
         // API Call
-        const url = `${host}api/contractor/deletenote/${id}`;
+        const url = `${host}/api/contractor/deletenote/${id}`;
         try {
           const response = await fetch(url, {
             method: "DELETE",
             headers: {
+              "auth-token": token,
               "Content-Type": "application/json",
-              "auth-token": localStorage.getItem("token"),
             },
           });
-          if (!response.ok) {
+          const result = await response.json();
+          if (result.contractor) {
             throw new Error(`Response status: ${response.status}`);
           }
-
-          const result = await response.json();
-          console.log(result);
+          else{
+            alert("Coundn't delete your data")
+          }
+         
         } catch (error) {
           console.error(error.message);
         }
-        console.log(`Deleting note with id ${id}`);
-        // .filter() has an inbuild loop so it can access each note._id and compare it with the given id.
-        const newDatas = Datas.filter((note) => {
-          return note._id !== id;
-        });
-        setData(newDatas);
+        
       };
 
 
-//       {
-//     "name":"SammmmSamSam",
-//     "email":"SammmmSam@gmail.com",
-//     "password":"000000",
-//     "phoneno":9909999845,
-//     "experience":"4years",
-//     "cost":"1000 to 3000",
-//     "work":"web dev1"
-// }
-      
 
   return (
     <ContractorContext.Provider value={{ deleteData,  getData }}>

@@ -16,7 +16,6 @@ const Navbar = ({
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (token) {
-      // Optional: validate token with backend here
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);

@@ -82,7 +82,10 @@ function App() {
               path="/admin"
               element={
                 <ProtectedRoute>
-                  <Admin setUpdateOpen={setUpdateOpen} /> 
+                  <Admin
+                    setUpdateOpen={setUpdateOpen}
+                    setIsLoggedIn={setIsLoggedIn}
+                  />
                 </ProtectedRoute>
               }
             />

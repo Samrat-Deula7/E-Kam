@@ -1,4 +1,18 @@
-const Admin = ({ setUpdateOpen }) => {
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import ContractorContext from "../../context/ContractorContext";
+
+const Admin = ({ setUpdateOpen, setIsLoggedIn }) => {
+  const navigation = useNavigate();
+const ContractorId = localStorage.getItem("contractorId");
+  const context = useContext(ContractorContext);
+  const { deleteData, getData } = context;
+
+  const deleteAccount = () => {
+    setIsLoggedIn(false);
+    navigation("/");
+    deleteData(ContractorId);
+  };
   return (
     <div className="pt-16  min-h-screen px-8 flex flex-col items-center justify-center w-full">
       <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center">
@@ -79,16 +93,14 @@ const Admin = ({ setUpdateOpen }) => {
               web dev1
             </h2>
           </div>
-          <h2 className="mt-4 text-red-500">
-            Want to delete your data??...{" "}
-            <span>
-              <i className="fa-solid fa-trash cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"></i>
-            </span>
-          </h2>
+
           <h2 className="mt-4 text-red-500">
             Want to delete your account??...{" "}
             <span>
-              <i className="fa-solid fa-trash cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"></i>
+              <i
+                onClick={deleteAccount}
+                className="fa-solid fa-trash cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"
+              ></i>
             </span>
           </h2>
         </div>
