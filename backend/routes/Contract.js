@@ -13,14 +13,26 @@ const fetchcontractor = require("../middleware/fetchcontractor");
 router.post(
   "/createcontractor",
   [
-    body("name", "Enter a valid name").isLength({ min: 3 }),
+    body("name", "Name should have at least 3 characters").isLength({ min: 3 }),
     body("password", "Password must be atleast 5 characters").isLength({
       min: 5,
     }),
     body("email", "Enter a valid email").isEmail(),
-    body("phoneno", "Enter an valid phone no").isLength({ min: 10 }),
-    body("experience", "provide work experience").isLength({ min: 3 }),
-    body("work", "provide your field of work ").isLength({ min: 3 }),
+    body("phoneno", "Phoneno must be at least have 10 numbers").isLength({
+      min: 10,
+    }),
+    body(
+      "experience",
+      "provide work experience with more then 3 characters"
+    ).isLength({ min: 3 }),
+    body(
+      "work",
+      "provide your field of work  with more then 3 characters"
+    ).isLength({ min: 3 }),
+    body(
+      "cost",
+      "provide your price range  with more then 3 characters"
+    ).isLength({ min: 3 }),
   ],
   async (req, res) => {
     // The above array will set the restrictions rules and the following code will give error if those rules are broken.
@@ -70,7 +82,6 @@ router.post(
 router.post(
   "/login",
   [
-    body("password", "Password cannot be black").exists(),
     body("email", "Enter a valid email").isEmail(),
   ],
   async (req, res) => {

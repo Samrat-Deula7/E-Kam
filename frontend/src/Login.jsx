@@ -39,6 +39,10 @@ const Login = ({
       console.log(result);
       if (result.authtoken && result.contractorId) {
         // Save the auth token and redirect
+         setCredentials({
+           name: "",
+           password: ""
+         });
         alert("logged in");
         setIsLoggedIn(true);
         localStorage.setItem("token", result.authtoken);

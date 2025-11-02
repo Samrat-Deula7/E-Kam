@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import {useFormik} from "formik"
+
 
 const Signup = ({
   setcontractorBtn,
@@ -7,7 +7,15 @@ const Signup = ({
   setSignupBtn,
   
 }) => {
-
+     const [validationError, setValidationError] = useState({
+       name: "",
+       email: "",
+       password: "",
+       phoneno: "",
+       experience: "",
+       cost: "",
+       work: "",
+     });
     const [credentials, setCredentials] = useState({
       name: "",
       email: "",
@@ -22,7 +30,7 @@ const Signup = ({
      const onChange = (e) => {
        setCredentials({ ...credentials, [e.target.name]: e.target.value });
      };
-  const preventDefault = (e) => {
+  const preventDefault = async (e) => {
     e.preventDefault();
   };
 
@@ -63,14 +71,38 @@ const Signup = ({
                 cost: "",
                 work: "",
               });
+               setValidationError({
+                 name: "",
+                 email: "",
+                 password: "",
+                 phoneno: "",
+                 experience: "",
+                 cost: "",
+                 work: "",
+               });
               setcontractorBtn(false);
               setSignupBtn(true);
               localStorage.setItem("token", result.authtoken);
               alert("Account Created");
+              
               //  props.showAlert("Successfully created your account", "success");
             } else {
               //  props.showAlert("Invalid Details", "danger");
-              alert("couldnot save data");
+              // alert("couldnot save data");
+              // 🔍 Get error message for a specific field
+              const getErrorMessage = (field) => {
+                const error = result.errors.find((e) => e.path === field);
+                return error?.msg || null;
+              };
+              setValidationError({
+                name: getErrorMessage("name"),
+                email: getErrorMessage("email"),
+                password: getErrorMessage("password"),
+                phoneno: getErrorMessage("phoneno"),
+                experience: getErrorMessage("experience"),
+                cost: getErrorMessage("cost"),
+                work: getErrorMessage("work"),
+              })
             }
           } else {
             //  props.showAlert("Both passwords should be same", "danger");
@@ -115,6 +147,7 @@ const Signup = ({
         <form onSubmit={preventDefault}>
           <div className="grid grid-cols-1 xl:grid-cols-2  place-items-center">
             <div className="relative">
+              <h6 className="text-red-500">{validationError.name}</h6>
               <input
                 type="text"
                 id="name"
@@ -123,15 +156,14 @@ const Signup = ({
                 className="w-90 mb-2 md:w-94  bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Name...."
                 onChange={onChange}
-                required
               />
             </div>
             <div className="relative">
+              <h6 className="text-red-500">{validationError.email}</h6>
               <input
                 type="email"
                 id="email"
                 name="email"
-                required
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="example@gmail.com"
@@ -141,11 +173,11 @@ const Signup = ({
             </div>
 
             <div className="relative">
+              <h6 className="text-red-500">{validationError.password}</h6>
               <input
                 type="password"
                 id="password"
                 name="password"
-                required
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your password"
@@ -154,11 +186,11 @@ const Signup = ({
               />
             </div>
             <div className="relative">
+              <h6 className="text-red-500">{validationError.password}</h6>
               <input
                 type="password"
                 id="cpassword"
                 name="cpassword"
-                required
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Confirm password"
@@ -167,11 +199,11 @@ const Signup = ({
               />
             </div>
             <div className="relative">
+              <h6 className="text-red-500">{validationError.phoneno}</h6>
               <input
                 type="text"
                 id="phoneno"
                 name="phoneno"
-                required
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your phone no"
@@ -181,11 +213,11 @@ const Signup = ({
             </div>
 
             <div className="relative">
+              <h6 className="text-red-500">{validationError.experience}</h6>
               <input
                 type="text"
                 id="experience"
                 name="experience"
-                required
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your work experience"
@@ -194,11 +226,11 @@ const Signup = ({
               />
             </div>
             <div className="relative">
+              <h6 className="text-red-500">{validationError.cost}</h6>
               <input
                 type="text"
                 id="cost"
                 name="cost"
-                required
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter your price range"
@@ -208,11 +240,11 @@ const Signup = ({
             </div>
 
             <div className="relative">
+              <h6 className="text-red-500">{validationError.work}</h6>
               <input
                 type="text"
                 id="work"
                 name="work"
-                required
                 // value={formData.email}
                 className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Enter what work you do"
