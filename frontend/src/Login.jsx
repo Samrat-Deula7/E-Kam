@@ -7,6 +7,10 @@ const Login = ({
   setSignupBtn,
   setIsLoggedIn,
 }) => {
+  const [loginErrorValidation, setLoginErrorValidation] = useState({
+    loginError1: "",
+    loginError2: "",
+  });
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   useEffect(() => {
@@ -39,10 +43,10 @@ const Login = ({
       console.log(result);
       if (result.authtoken && result.contractorId) {
         // Save the auth token and redirect
-         setCredentials({
-           name: "",
-           password: ""
-         });
+        setCredentials({
+          name: "",
+          password: "",
+        });
         alert("logged in");
         setIsLoggedIn(true);
         localStorage.setItem("token", result.authtoken);
@@ -55,7 +59,23 @@ const Login = ({
         // props.showAlert("Logged into your account successfully", "success");
       } else {
         // props.showAlert("Invalid credentials", "danger");
-        alert("Invalid Credentials");
+        if (result.errors) {
+          const getErrorMessage = (field) => {
+            const errors = result.errors.find((e) => e.path === field);
+            return errors?.msg || null;
+          };
+          setLoginErrorValidation({
+            loginError1: getErrorMessage("email"),
+            loginError2: "",
+          });
+        } else {
+          const error2 = result.error;
+          setLoginErrorValidation({
+            loginError1: "",
+            loginError2: error2,
+          });
+        }
+
         setIsLoggedIn(false);
         setSignupBtn(true);
       }
@@ -78,6 +98,8 @@ const Login = ({
         <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent text-center">
           Log in to your account
         </h2>
+        <h6 className="text-red-500">{loginErrorValidation.loginError1}</h6>
+        <h6 className="text-red-500">{loginErrorValidation.loginError2}</h6>
         <button
           onClick={() => {
             setSignupBtn(false);
@@ -97,7 +119,6 @@ const Login = ({
               type="email"
               id="login-email"
               name="email"
-              required
               // value={formData.email}
               className="w-90 md:w-120 mb-2  bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
               placeholder="example@gmail.com"
@@ -112,7 +133,6 @@ const Login = ({
               type="password"
               id="login-password"
               name="password"
-              required
               // value={formData.email}
               className="w-90 md:w-120  mb-2  bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
               placeholder="Enter your password"
