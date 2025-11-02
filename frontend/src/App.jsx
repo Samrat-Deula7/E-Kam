@@ -85,6 +85,7 @@ function App() {
                   <Admin
                     setUpdateOpen={setUpdateOpen}
                     setIsLoggedIn={setIsLoggedIn}
+                    updateOpen={updateOpen}
                   />
                 </ProtectedRoute>
               }
