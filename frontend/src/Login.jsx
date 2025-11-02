@@ -43,19 +43,16 @@ const Login = ({
       console.log(result);
       if (result.authtoken && result.contractorId) {
         // Save the auth token and redirect
-        setCredentials({
-          name: "",
-          password: "",
-        });
+         setCredentials({
+           email: "",
+           password: "",
+         });
         alert("logged in");
         setIsLoggedIn(true);
         localStorage.setItem("token", result.authtoken);
         localStorage.setItem("contractorId", result.contractorId);
         setSignupBtn(false);
-        setCredentials({
-          email: "",
-          password: "",
-        });
+      
         // props.showAlert("Logged into your account successfully", "success");
       } else {
         // props.showAlert("Invalid credentials", "danger");

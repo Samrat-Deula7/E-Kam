@@ -1,12 +1,21 @@
 import { useState } from "react";
 
 const UpdateData = ({ setUpdateOpen, updateOpen }) => {
-  
+    const [validationError, setValidationError] = useState({
+      name: "",
+      email: "",
+      password: "",
+      phoneno: "",
+      experience: "",
+      cost: "",
+      work: "",
+    });
     const [credentials, setCredentials] = useState({
       name: "",
       email: "",
       password: "",
       phoneno: "",
+      cpassword: "",
       experience: "",
       cost: "",
       work: "",
@@ -23,6 +32,8 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
         const id = localStorage.getItem("contractorId");
         const token=localStorage.getItem("token")
       try {
+            if (credentials.password == credentials.cpassword) {
+
           // API Call
           const url =` http://localhost:3000/api/contractor/updatedata/${id}`;
           const { name, email, password, phoneno, experience, cost, work } =
@@ -52,6 +63,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
               name: "",
               email: "",
               password: "",
+              cpassword: "",
               phoneno: "",
               experience: "",
               cost: "",
@@ -62,9 +74,25 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
             //  props.showAlert("Successfully created your account", "success");
           } else {
             //  props.showAlert("Invalid Details", "danger");
-            alert("couldnot Update data");
+              const getErrorMessage = (field) => {
+                const error = result.errors.find((e) => e.path === field);
+                return error?.msg || null;
+              };
+              setValidationError({
+                name: getErrorMessage("name"),
+                email: getErrorMessage("email"),
+                password: getErrorMessage("password"),
+                phoneno: getErrorMessage("phoneno"),
+                experience: getErrorMessage("experience"),
+                cost: getErrorMessage("cost"),
+                work: getErrorMessage("work"),
+              });
           }
-       
+        }
+        else{
+           alert("Both password must be same");
+
+        }
       } catch (error) {
         alert(error.message);
       }
@@ -93,8 +121,9 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
           </button>
 
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1  lg:grid-cols-2 place-items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center">
               <div className="relative">
+                <h6 className="text-red-500">{validationError.name}</h6>
                 <input
                   type="text"
                   id="update-name"
@@ -107,6 +136,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                 />
               </div>
               <div className="relative">
+                <h6 className="text-red-500">{validationError.email}</h6>
                 <input
                   type="email"
                   id="update-email"
@@ -121,6 +151,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
               </div>
 
               <div className="relative">
+                <h6 className="text-red-500">{validationError.password}</h6>
                 <input
                   type="password"
                   id="update-password"
@@ -133,8 +164,22 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   value={credentials.password}
                 />
               </div>
+              <div className="relative">
+                <h6 className="text-red-500">{validationError.password}</h6>
+                <input
+                  type="password"
+                  id="update-cpassword"
+                  name="cpassword"
+                  // value={formData.email}
+                  className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+                  placeholder="Confirm password"
+                  onChange={onChange}
+                  value={credentials.cpassword}
+                />
+              </div>
 
               <div className="relative">
+                <h6 className="text-red-500">{validationError.phoneno}</h6>
                 <input
                   type="text"
                   id="update-phoneno"
@@ -149,6 +194,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
               </div>
 
               <div className="relative">
+                <h6 className="text-red-500">{validationError.experience}</h6>
                 <input
                   type="text"
                   id="update-experience"
@@ -162,6 +208,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                 />
               </div>
               <div className="relative">
+                <h6 className="text-red-500">{validationError.cost}</h6>
                 <input
                   type="text"
                   id="update-cost"
@@ -176,6 +223,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
               </div>
 
               <div className="relative">
+                <h6 className="text-red-500">{validationError.work}</h6>
                 <input
                   type="text"
                   id="update-work"

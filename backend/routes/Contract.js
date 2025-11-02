@@ -156,56 +156,89 @@ router.get("/fetchalldata", async (req, res) => {
 
 //ROUTE 5:update an existing contractor info using:put  /api/contractor/updatedata/:id, login required.
         // The fetchcontractor is an middle ware that does the authentication using auth token
-router.put("/updatedata/:id", fetchcontractor, async (req, res) => {
-  const { name, email, password, phoneno, experience, cost, work } = req.body;
-  const newContractor = {};
-  try {
-    if (name) {
-      newContractor.name = name;
-    }
-    if (email) {
-      newContractor.email = email;
-    }
-    if (password) {
-      newContractor.password = password;
-    }
-    if (phoneno) {
-      newContractor.phoneno = phoneno;
-    }
-    if (experience) {
-      newContractor.experience = experience;
-    }
-    if (cost) {
-      newContractor.cost = cost;
-    }
-    if (work) {
-      newContractor.work = work;
-    }
-
-    //Find the note to be updated and update it.
-    // req.params.id is simply the note id that I pass as an parameter in the url(/api/contractor/updatenote/:id)
-    let contractor = await Contractor.findById(req.params.id);
-    if (!contractor) {
-      return res.status(404).send("Not Found");
-    }
-
-    // contractor.id.toString() comes form params
-    // req.contractor.id comes from fetchuser middleware
-    if (contractor.id.toString() !== req.contractor.id) {
-      return res.status(401).send("Not Allowed");
+router.put(
+  "/updatedata/:id",
+  [
+    body("name", "Name should have at least 3 characters").isLength({ min: 3 }),
+    body("password", "Password must be atleast 5 characters").isLength({
+      min: 5,
+    }),
+    body("email", "Enter a valid email").isEmail(),
+    body("phoneno", "Phoneno must be at least have 10 numbers").isLength({
+      min: 10,
+    }),
+    body(
+      "experience",
+      "provide work experience with more then 3 characters"
+    ).isLength({ min: 3 }),
+    body(
+      "work",
+      "provide your field of work  with more then 3 characters"
+    ).isLength({ min: 3 }),
+    body(
+      "cost",
+      "provide your price range  with more then 3 characters"
+    ).isLength({ min: 3 }),
+  ],
+  fetchcontractor,
+  async (req, res) => {
+    // The above array will set the restrictions rules and the following code will give error if those rules are broken.
+    const errors = validationResult(req);
+    // If error is empty is false then there is error so the if statement cathes the error.
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
 
-    contractor = await Contractor.findByIdAndUpdate(
-      req.params.id,
-      { $set: newContractor },
-      { new: true }
-    );
-    res.json({ contractor, contractorId: contractor.id });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Some error occured");
+    const { name, email, password, phoneno, experience, cost, work } = req.body;
+    const newContractor = {};
+    try {
+      if (name) {
+        newContractor.name = name;
+      }
+      if (email) {
+        newContractor.email = email;
+      }
+      if (password) {
+        newContractor.password = password;
+      }
+      if (phoneno) {
+        newContractor.phoneno = phoneno;
+      }
+      if (experience) {
+        newContractor.experience = experience;
+      }
+      if (cost) {
+        newContractor.cost = cost;
+      }
+      if (work) {
+        newContractor.work = work;
+      }
+
+      //Find the note to be updated and update it.
+      // req.params.id is simply the note id that I pass as an parameter in the url(/api/contractor/updatenote/:id)
+      let contractor = await Contractor.findById(req.params.id);
+      if (!contractor) {
+        return res.status(404).send("Not Found");
+      }
+
+      // contractor.id.toString() comes form params
+      // req.contractor.id comes from fetchuser middleware
+      if (contractor.id.toString() !== req.contractor.id) {
+        return res.status(401).send("Not Allowed");
+      }
+
+      contractor = await Contractor.findByIdAndUpdate(
+        req.params.id,
+        { $set: newContractor },
+        { new: true }
+      );
+      res.json({ contractor, contractorId: contractor.id });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Some error occured");
+    }
   }
-});
+);
 
 //ROUTE 6:Delete an existing contractor data using:delete  /api/contractor/deletenote/:id, login required
 router.delete("/deletenote/:id", fetchcontractor, async (req, res) => {
