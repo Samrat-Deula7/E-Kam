@@ -1,11 +1,10 @@
 import { useState } from "react";
 
-const UpdateData = ({ isUpdateOpen, updateOpen }) => {
+const UpdateData = ({ setUpdateOpen, updateOpen }) => {
   
     const [credentials, setCredentials] = useState({
       name: "",
       email: "",
-      password: "",
       phoneno: "",
       experience: "",
       cost: "",
@@ -25,11 +24,11 @@ const UpdateData = ({ isUpdateOpen, updateOpen }) => {
       try {
           // API Call
           const url =` http://localhost:3000/api/contractor/updatedata/${id}`;
-          const { name, email, password, phoneno, experience, cost, work } =
+          const { name, email,  phoneno, experience, cost, work } =
             credentials;
 
           const response = await fetch(url, {
-            method: "POST",
+            method: "PUT", 
             headers: {
               "Content-Type": "application/json",
               "auth-token":token
@@ -37,7 +36,6 @@ const UpdateData = ({ isUpdateOpen, updateOpen }) => {
             body: JSON.stringify({
               name,
               email,
-              password,
               phoneno,
               experience,
               cost,
@@ -46,18 +44,18 @@ const UpdateData = ({ isUpdateOpen, updateOpen }) => {
           });
           const result = await response.json();
           console.log(result);
-          if (result) {
+          if (result.contractorId) {
             // Save the auth token and redirect
             setCredentials({
               name: "",
               email: "",
-              password: "",
               phoneno: "",
               experience: "",
               cost: "",
               work: "",
             });
             alert("Account Updated");
+            setUpdateOpen(false);
             //  props.showAlert("Successfully created your account", "success");
           } else {
             //  props.showAlert("Invalid Details", "danger");
@@ -66,6 +64,7 @@ const UpdateData = ({ isUpdateOpen, updateOpen }) => {
        
       } catch (error) {
         alert(error.message);
+        
       }
     };
 
@@ -83,7 +82,7 @@ const UpdateData = ({ isUpdateOpen, updateOpen }) => {
           </h2>
           <button
             onClick={() => {
-              isUpdateOpen(false);
+              setUpdateOpen(false);
             }}
             className="absolute top-6 right-6 text-white text-3xl focus:outline-none cursor-pointer "
             aria-label="Close button"
@@ -92,7 +91,7 @@ const UpdateData = ({ isUpdateOpen, updateOpen }) => {
           </button>
 
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1   place-items-center">
+            <div className="grid grid-cols-1  lg:grid-cols-2 place-items-center">
               <div className="relative">
                 <input
                   type="text"
@@ -119,19 +118,7 @@ const UpdateData = ({ isUpdateOpen, updateOpen }) => {
                 />
               </div>
 
-              <div className="relative">
-                <input
-                  type="password"
-                  id="update-password"
-                  name="password"
-                  required
-                  // value={formData.email}
-                  className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder="Enter your password"
-                  onChange={onChange}
-                  value={credentials.password}
-                />
-              </div>
+           
 
               <div className="relative">
                 <input

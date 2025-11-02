@@ -189,7 +189,7 @@ router.put("/updatedata/:id", fetchcontractor, async (req, res) => {
       { $set: newContractor },
       { new: true }
     );
-    res.json({ contractor });
+    res.json({ contractor, contractorId: contractor.id });
   } catch (error) {
     console.error(error);
     res.status(500).send("Some error occured");

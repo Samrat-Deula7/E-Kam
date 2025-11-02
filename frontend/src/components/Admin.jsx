@@ -1,4 +1,4 @@
-const Admin = ({ isUpdateOpen }) => {
+const Admin = ({ setUpdateOpen }) => {
   return (
     <div className="pt-16  min-h-screen px-8 flex flex-col items-center justify-center w-full">
       <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center">
@@ -15,7 +15,7 @@ const Admin = ({ isUpdateOpen }) => {
             Do You want to update anything??...{" "}
             <span>
               <i
-                onClick={() => isUpdateOpen(true)}
+                onClick={() => setUpdateOpen(true)}
                 className="fa-solid fa-pen-to-square cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"
               ></i>
             </span>

@@ -18,7 +18,7 @@ function App() {
   const [contractorBtn, setcontractorBtn] = useState(false);
   const [signupBtn, setSignupBtn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [updateOpen,isUpdateOpen]=useState(false);
+  const [updateOpen,setUpdateOpen]=useState(false);
   
   // The following useEffect prevents the page form scrolling when the hamburger icon is open
 
@@ -68,7 +68,7 @@ function App() {
             setSignupBtn={setSignupBtn}
             setIsLoggedIn={setIsLoggedIn}
           />
-          <UpdateData updateOpen={updateOpen} isUpdateOpen={isUpdateOpen} />
+          <UpdateData updateOpen={updateOpen} setUpdateOpen={setUpdateOpen} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
@@ -82,7 +82,7 @@ function App() {
               path="/admin"
               element={
                 <ProtectedRoute>
-                  <Admin isUpdateOpen={isUpdateOpen} />
+                  <Admin setUpdateOpen={setUpdateOpen} /> 
                 </ProtectedRoute>
               }
             />

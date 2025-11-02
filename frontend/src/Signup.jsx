@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useFormik} from "formik"
 
 const Signup = ({
   setcontractorBtn,
@@ -80,6 +81,14 @@ const Signup = ({
         }
 
    };
+
+    const Formik = useFormik({
+      credentials: credentials,
+      onSubmit: (values) => {
+        console.log(values);
+      },
+    });
+    console.log(Formik);
 
   return (
     <div
