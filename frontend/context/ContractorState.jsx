@@ -1,9 +1,11 @@
 import ContractorContext from "./ContractorContext";
+import { useState } from "react";
 
 
 const ContractorState = (props) => {
       const host = "http://localhost:3000";
-
+      const initialData=[]
+      const [contractorData,setContractorData]=useState(initialData)
       // Get the contractor details
       const getData = async () => {
         // API Call
@@ -23,6 +25,7 @@ const ContractorState = (props) => {
 
           const result = await response.json();
           console.log(result);
+          setContractorData(result);
         } catch (error) {
           console.error(error.message);
         }
@@ -58,7 +61,7 @@ const ContractorState = (props) => {
 
 
   return (
-    <ContractorContext.Provider value={{ deleteData,  getData }}>
+    <ContractorContext.Provider value={{ deleteData, getData, contractorData }}>
       {props.children}
     </ContractorContext.Provider>
   );

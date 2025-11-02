@@ -1,13 +1,19 @@
 import { useContext } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ContractorContext from "../../context/ContractorContext";
 
 const Admin = ({ setUpdateOpen, setIsLoggedIn }) => {
+  const context = useContext(ContractorContext);
+  const { deleteData, getData, contractorData } = context;
+
   const navigation = useNavigate();
 const ContractorId = localStorage.getItem("contractorId");
-  const context = useContext(ContractorContext);
-  const { deleteData, getData } = context;
 
+  useEffect(() => {
+ getData();
+  }, []);
+  
   const deleteAccount = () => {
     setIsLoggedIn(false);
     navigation("/");
@@ -40,7 +46,7 @@ const ContractorId = localStorage.getItem("contractorId");
               <span className="text-gray-400 font-bold text-xl md:text-2xl ">
                 Name:
               </span>{" "}
-              SammmmSamSam
+              {contractorData.name}
             </h2>
           </div>
 
@@ -49,7 +55,7 @@ const ContractorId = localStorage.getItem("contractorId");
               <span className="text-gray-400 font-bold text-xl md:text-2xl ">
                 Email:
               </span>{" "}
-              SammmmSam@gmail.com
+              {contractorData.email}{" "}
             </h2>
           </div>
 
@@ -58,23 +64,16 @@ const ContractorId = localStorage.getItem("contractorId");
               <span className="text-gray-400 font-bold text-xl md:text-2xl ">
                 Phone no:
               </span>{" "}
-              9909999845
+              {contractorData.phoneno}
             </h2>
           </div>
-          <div className=" bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg mb-1 rounded px-2 py-4">
-            <h2>
-              <span className="text-gray-400 font-bold text-xl md:text-2xl ">
-                Password:
-              </span>{" "}
-              00000000
-            </h2>
-          </div>
+
           <div className=" bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg mb-1 rounded px-2 py-4">
             <h2>
               <span className="text-gray-400 font-bold text-xl md:text-2xl ">
                 Experience:
               </span>{" "}
-              4years
+              {contractorData.experience}{" "}
             </h2>
           </div>
           <div className=" bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg mb-1 rounded px-2 py-4">
@@ -82,7 +81,7 @@ const ContractorId = localStorage.getItem("contractorId");
               <span className="text-gray-400 font-bold text-xl md:text-2xl ">
                 Cost:
               </span>{" "}
-              1000 to 3000
+              {contractorData.cost}{" "}
             </h2>
           </div>
           <div className=" bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg mb-1 rounded px-2 py-4">
@@ -90,7 +89,7 @@ const ContractorId = localStorage.getItem("contractorId");
               <span className="text-gray-400 font-bold text-xl md:text-2xl ">
                 Your Work:
               </span>{" "}
-              web dev1
+              {contractorData.work}{" "}
             </h2>
           </div>
 
