@@ -6,6 +6,9 @@ const ContractorState = (props) => {
       const host = "http://localhost:3000";
       const initialData=[]
       const [contractorData,setContractorData]=useState(initialData)
+      const allInitialData=[]
+      const [allContractorData,setAllContractorData]=useState(allInitialData)
+
       // Get the contractor details
       const getData = async () => {
         // API Call
@@ -26,6 +29,29 @@ const ContractorState = (props) => {
           const result = await response.json();
           console.log(result);
           setContractorData(result);
+        } catch (error) {
+          console.error(error.message);
+        }
+      };
+
+      // Get the all contractor details
+      const getAllData = async () => {
+        // API Call
+        const url = `${host}/api/contractor/fetchalldata`;
+        try {
+          const response = await fetch(url, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          console.log(result);
+          setAllContractorData(result);
         } catch (error) {
           console.error(error.message);
         }
@@ -61,7 +87,15 @@ const ContractorState = (props) => {
 
 
   return (
-    <ContractorContext.Provider value={{ deleteData, getData, contractorData }}>
+    <ContractorContext.Provider
+      value={{
+        deleteData,
+        getData,
+        contractorData,
+        getAllData,
+        allContractorData,
+      }}
+    >
       {props.children}
     </ContractorContext.Provider>
   );
