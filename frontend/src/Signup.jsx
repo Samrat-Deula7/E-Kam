@@ -15,6 +15,7 @@ const Signup = ({
        experience: "",
        cost: "",
        work: "",
+       userExistsError:""
      });
     const [credentials, setCredentials] = useState({
       name: "",
@@ -79,6 +80,7 @@ const Signup = ({
                  experience: "",
                  cost: "",
                  work: "",
+                 userExistsError:"",
                });
               setcontractorBtn(false);
               setSignupBtn(true);
@@ -90,6 +92,20 @@ const Signup = ({
               //  props.showAlert("Invalid Details", "danger");
               // alert("couldnot save data");
               // 🔍 Get error message for a specific field
+              if(result.error){
+                const alreadyExistsError = result.error;
+                 setValidationError({
+                   name: "",
+                   email: "",
+                   password: "",
+                   phoneno: "",
+                   experience: "",
+                   cost: "",
+                   work: "",
+                   userExistsError: alreadyExistsError,
+                 });
+              }
+              else{
               const getErrorMessage = (field) => {
                 const error = result.errors.find((e) => e.path === field);
                 return error?.msg || null;
@@ -102,7 +118,9 @@ const Signup = ({
                 experience: getErrorMessage("experience"),
                 cost: getErrorMessage("cost"),
                 work: getErrorMessage("work"),
-              })
+                userExistsError:"",
+              });
+            }
             }
           } else {
             //  props.showAlert("Both passwords should be same", "danger");
@@ -134,6 +152,8 @@ const Signup = ({
         <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent text-center">
           Sign Up
         </h2>
+        <h6 className="text-red-500">{validationError.userExistsError}</h6>
+
         <button
           onClick={() => {
             setcontractorBtn(false);
