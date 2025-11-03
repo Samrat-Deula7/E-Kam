@@ -70,12 +70,29 @@ const Services = () => {
       {/* "max-h-[1000px] overflow-hidden" This tailwind styling in sures that no matter how many cards we have only certain numbers of it will be shown */}
 
       <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3  place-items-center mt-6 mx-6 my-3 max-h-[2000px] overflow-hidden">
+        {/* {searchData.length === 0 && (
+          <div className="container">Not found</div>
+        )}
         {searchData.map((Data) => {
           return <SearchCard key={Data._id} Data={Data} />;
         })}
+        
         {allContractorData.map((Contractor) => {
           return <Card key={Contractor._id} Contractor={Contractor} />;
-        })}
+        })} */}
+        {searchData.length === 0 && (
+          <div className="text-xl md:text-3xl">
+            Contracotr not found . You can pick from the contractor available
+            below
+          </div>
+        )}
+        <br />
+        <br />
+        {searchData.length === 0
+          ? allContractorData.map((Contractor) => (
+              <Card key={Contractor._id} Contractor={Contractor} />
+            ))
+          : searchData.map((Data) => <SearchCard key={Data._id} Data={Data} />)}
       </div>
     </div>
   );
