@@ -1,4 +1,5 @@
 import Card from "./Card";
+import SearchCard from "../SearchCard";
 import ContractorContext from "../../context/ContractorContext";
 import { useEffect } from "react";
 import { useContext } from "react";
@@ -29,8 +30,9 @@ const Services = () => {
         },
       });
       const result = await response.json();
-      if (result.ContractorData) {
+      if (result) {
         setSearchData(result);
+        console.log(result);
       } else {
         alert("Coundn't retrive data");
       }
@@ -41,7 +43,8 @@ const Services = () => {
 
   useEffect(() => {
     getAllData();
-  }, []);
+    console.log(searchData);
+  }, [searchData]);
 
   return (
     <div className="pt-18 min-h-screen px-8 flex flex-col items-center justify-center w-full">
@@ -67,11 +70,9 @@ const Services = () => {
       {/* "max-h-[1000px] overflow-hidden" This tailwind styling in sures that no matter how many cards we have only certain numbers of it will be shown */}
 
       <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3  place-items-center mt-6 mx-6 my-3 max-h-[2000px] overflow-hidden">
-        {allContractorData.length === 0 && (
-          <div className="container">
-            Contracotrs Data will be shown when available
-          </div>
-        )}
+        {searchData.map((Data) => {
+          return <SearchCard key={Data._id} Data={Data} />;
+        })}
         {allContractorData.map((Contractor) => {
           return <Card key={Contractor._id} Contractor={Contractor} />;
         })}

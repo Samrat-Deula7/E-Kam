@@ -272,7 +272,7 @@ router.get("/search",  async (req, res) => {
     const ContractorData = await Contractor.find({
       work: { $regex: q, $options: "i" }, // webdev = Webdev
     }).sort({ createdAt: -1 }); // newly saved data will be shown first
-    return res.status(200).json({ ContractorData: ContractorData });
+    return res.status(200).json( ContractorData );
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
