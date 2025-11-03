@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const Services = () => {
   const [query, setQuery] = useState("");
+  const [noContractor, setNoContractor] = useState("");
   const initialSearchData = [];
   const [searchData, setSearchData] = useState(initialSearchData);
   const handleSubmit = (e) => {
@@ -32,7 +33,7 @@ const Services = () => {
       const result = await response.json();
       if (result) {
         setSearchData(result);
-        console.log(result);
+       setQuery("");
       } else {
         alert("Coundn't retrive data");
       }
@@ -44,6 +45,13 @@ const Services = () => {
   useEffect(() => {
     getAllData();
     console.log(searchData);
+     if (searchData.length === 0) {
+       setNoContractor(
+         "Contractor not found . You can pick from the contractor available below"
+       );
+     } else {
+       setNoContractor("");
+     }
   }, [searchData]);
 
   return (
@@ -67,6 +75,10 @@ const Services = () => {
         </form>
       </div>
 
+      <div className="text-xl md:text-3xl text-red-500">
+        <h4>{noContractor}</h4>
+      </div>
+
       {/* "max-h-[1000px] overflow-hidden" This tailwind styling in sures that no matter how many cards we have only certain numbers of it will be shown */}
 
       <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3  place-items-center mt-6 mx-6 my-3 max-h-[2000px] overflow-hidden">
@@ -80,14 +92,7 @@ const Services = () => {
         {allContractorData.map((Contractor) => {
           return <Card key={Contractor._id} Contractor={Contractor} />;
         })} */}
-        {searchData.length === 0 && (
-          <div className="text-xl md:text-3xl">
-            Contracotr not found . You can pick from the contractor available
-            below
-          </div>
-        )}
-        <br />
-        <br />
+
         {searchData.length === 0
           ? allContractorData.map((Contractor) => (
               <Card key={Contractor._id} Contractor={Contractor} />
