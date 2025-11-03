@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ContractorContext from "../../context/ContractorContext";
 
+
 const Admin = ({ setUpdateOpen, setIsLoggedIn, updateOpen }) => {
   const context = useContext(ContractorContext);
   const { deleteData, getData, contractorData } = context;

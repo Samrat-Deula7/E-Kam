@@ -262,4 +262,19 @@ router.delete("/deletenote/:id", fetchcontractor, async (req, res) => {
     res.status(500).send("Some error occured");
   }
 });
+
+// Route 7:This is search api for the search bar url(/api/contractor/search)
+router.get("/search",  async (req, res) => {
+  try {
+    // const { q } = req.params.q;
+        const q = await req.headers["query"];
+
+    const ContractorData = await Contractor.find({
+      work: { $regex: q, $options: "i" }, // webdev = Webdev
+    }).sort({ createdAt: -1 }); // newly saved data will be shown first
+    return res.status(200).json({ ContractorData: ContractorData });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 module.exports = router;
