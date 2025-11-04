@@ -1,7 +1,7 @@
 import Card from "./Card";
 import SearchCard from "../SearchCard";
 import ContractorContext from "../../context/ContractorContext";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 
@@ -42,16 +42,25 @@ const Services = () => {
     }
   };
 
+    const hasMounted = useRef(false);
+
   useEffect(() => {
-    getAllData();
-    console.log(searchData);
-     if (searchData.length === 0) {
-       setNoContractor(
-         "Contractor not found . You can pick from the contractor available below"
-       );
-     } else {
-       setNoContractor("");
-     }
+    // console.log(searchData);
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+      return; // ⛔ Skip effect on initial mount
+    }
+
+    if (searchData.length === 0) {
+      setNoContractor(
+        "Contractor not found . You can pick from the contractor available below"
+      );
+          getAllData();
+
+    } else {
+      setNoContractor("");
+
+    }
   }, [searchData]);
 
   return (
@@ -81,7 +90,7 @@ const Services = () => {
 
       {/* "max-h-[1000px] overflow-hidden" This tailwind styling in sures that no matter how many cards we have only certain numbers of it will be shown */}
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3  place-items-center mt-6 mx-6 my-3 max-h-[2000px] overflow-hidden">
+      <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3  place-items-center mt-6 mx-6 my-3 ">
         {/* {searchData.length === 0 && (
           <div className="container">Not found</div>
         )}
