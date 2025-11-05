@@ -42,25 +42,7 @@ const Services = () => {
     }
   };
 
-    // const hasMounted = useRef(false);
-
-  // useEffect(() => {
-  //   // console.log(searchData);
-  //   // if (!hasMounted.current) {
-      
-  //   if (searchData.length === 0) {
-  //     setNoContractor(
-  //       "Contractor not found . You can pick from the contractor available below"
-  //     );
-  //         getAllData();
-  //         hasMounted.current = true;
-  //   } else {
-  //     setNoContractor("");
-          
-
-  //   }
-  // // }
-  // }, [searchData]);
+   
   useEffect(() => {
     getAllData();
     console.log("This is the searched data", searchData);
