@@ -1,6 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import ContractorContext from "../context/ContractorContext";
 
 const UpdateData = ({ setUpdateOpen, updateOpen }) => {
+        
+
+
+  const context =useContext(ContractorContext)
+  const {contractorData}=context;
     const [validationError, setValidationError] = useState({
       name: "",
       email: "",
@@ -29,6 +35,8 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
     };
 
     const updateUser = async () => {
+      
+
         const id = localStorage.getItem("contractorId");
         const token=localStorage.getItem("token")
       try {
@@ -59,6 +67,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
           console.log(result);
           if (result.contractorId) {
             // Save the auth token and redirect
+            
             setCredentials({
               name: "",
               email: "",
@@ -98,6 +107,8 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
       }
     };
 
+    
+
     return (
       <div
         className={`fixed top-0 left-0 max-w-screen w-full bg-[#181C14] z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${
@@ -130,7 +141,8 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   name="name"
                   value={credentials.name}
                   className="w-90 mb-2 md:w-94  bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder="Name...."
+                  placeholder={contractorData.name}
+                  onDoubleClick={handleDoubleClick}
                   onChange={onChange}
                   required
                 />
@@ -144,7 +156,8 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder="example@gmail.com"
+                  placeholder={contractorData.email}
+                  onDoubleClick={handleDoubleClick}
                   onChange={onChange}
                   value={credentials.email}
                 />
@@ -187,7 +200,8 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder="Enter your phone no"
+                  placeholder={contractorData.phoneno}
+                  onDoubleClick={handleDoubleClick}
                   onChange={onChange}
                   value={credentials.phoneno}
                 />
@@ -202,7 +216,8 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder="Enter your work experience"
+                  placeholder={contractorData.experience}
+                  onDoubleClick={handleDoubleClick}
                   onChange={onChange}
                   value={credentials.experience}
                 />
@@ -216,7 +231,8 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder="Enter your price range"
+                  placeholder={contractorData.cost}
+                  onDoubleClick={handleDoubleClick}
                   onChange={onChange}
                   value={credentials.cost}
                 />
@@ -231,7 +247,8 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder="Enter what work you do"
+                  placeholder={contractorData.work}
+                  onDoubleClick={handleDoubleClick}
                   onChange={onChange}
                   value={credentials.work}
                 />
