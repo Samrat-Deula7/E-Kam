@@ -8,7 +8,7 @@ import { useState } from "react";
 const Services = () => {
   const [query, setQuery] = useState("");
   const [noContractor, setNoContractor] = useState("");
-  const initialSearchData = [];
+  const initialSearchData = [1, 2, 3]; // 1,2,3 is an temporary data so that the code doesn't run when refreshing
   const [searchData, setSearchData] = useState(initialSearchData);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,24 +42,34 @@ const Services = () => {
     }
   };
 
-    const hasMounted = useRef(false);
+    // const hasMounted = useRef(false);
 
+  // useEffect(() => {
+  //   // console.log(searchData);
+  //   // if (!hasMounted.current) {
+      
+  //   if (searchData.length === 0) {
+  //     setNoContractor(
+  //       "Contractor not found . You can pick from the contractor available below"
+  //     );
+  //         getAllData();
+  //         hasMounted.current = true;
+  //   } else {
+  //     setNoContractor("");
+          
+
+  //   }
+  // // }
+  // }, [searchData]);
   useEffect(() => {
-    // console.log(searchData);
-    if (!hasMounted.current) {
-      hasMounted.current = true;
-      return; // ⛔ Skip effect on initial mount
-    }
-
-    if (searchData.length === 0) {
+    getAllData();
+    console.log("This is the searched data", searchData);
+    if (Array.isArray(searchData) && searchData.length === 0) {
       setNoContractor(
         "Contractor not found . You can pick from the contractor available below"
       );
-          getAllData();
-
     } else {
       setNoContractor("");
-
     }
   }, [searchData]);
 
@@ -93,20 +103,20 @@ const Services = () => {
       <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3  place-items-center mt-6 mx-6 my-3 ">
         {/* {searchData.length === 0 && (
           <div className="container">Not found</div>
-        )}
+        )} */}
         {searchData.map((Data) => {
           return <SearchCard key={Data._id} Data={Data} />;
         })}
         
         {allContractorData.map((Contractor) => {
           return <Card key={Contractor._id} Contractor={Contractor} />;
-        })} */}
-
+        })}
+{/* 
         {searchData.length === 0
           ? allContractorData.map((Contractor) => (
               <Card key={Contractor._id} Contractor={Contractor} />
             ))
-          : searchData.map((Data) => <SearchCard key={Data._id} Data={Data} />)}
+          : searchData.map((Data) => <SearchCard key={Data._id} Data={Data} />)} */}
       </div>
     </div>
   );
