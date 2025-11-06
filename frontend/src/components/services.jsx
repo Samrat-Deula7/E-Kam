@@ -15,25 +15,27 @@ const Services = () => {
   };
   const context = useContext(ContractorContext);
   const { getAllData, allContractorData } = context;
+
   const onChange = (e) => {
     setQuery(e.target.value);
+    
   };
+
   // SEARCH Data
   const getSearchData = async () => {
     // API Call
-    const url = "http://localhost:3000/api/contractor/search";
+    const url = `http://localhost:3000/api/contractor/search?q=${query}`;
     try {
       const response = await fetch(url, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          query: query,
         },
       });
       const result = await response.json();
       if (result) {
         setSearchData(result);
-       setQuery("");
+        setQuery("");
       } else {
         alert("Coundn't retrive data");
       }
@@ -44,7 +46,8 @@ const Services = () => {
 
    
   useEffect(() => {
-    getAllData();
+          getAllData();
+
     console.log("This is the searched data", searchData);
     if (Array.isArray(searchData) && searchData.length === 0) {
       setNoContractor(
@@ -89,11 +92,11 @@ const Services = () => {
         {searchData.map((Data) => {
           return <SearchCard key={Data._id} Data={Data} />;
         })}
-        
+
         {allContractorData.map((Contractor) => {
           return <Card key={Contractor._id} Contractor={Contractor} />;
         })}
-{/* 
+        {/* 
         {searchData.length === 0
           ? allContractorData.map((Contractor) => (
               <Card key={Contractor._id} Contractor={Contractor} />

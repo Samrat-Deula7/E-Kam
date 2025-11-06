@@ -1,12 +1,7 @@
 import { useContext, useState } from "react";
-import ContractorContext from "../context/ContractorContext";
 
 const UpdateData = ({ setUpdateOpen, updateOpen }) => {
         
-
-
-  const context =useContext(ContractorContext)
-  const {contractorData}=context;
     const [validationError, setValidationError] = useState({
       name: "",
       email: "",
@@ -35,7 +30,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
     };
 
     const updateUser = async () => {
-      
+
 
         const id = localStorage.getItem("contractorId");
         const token=localStorage.getItem("token")
@@ -67,7 +62,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
           console.log(result);
           if (result.contractorId) {
             // Save the auth token and redirect
-            
             setCredentials({
               name: "",
               email: "",
@@ -141,8 +135,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   name="name"
                   value={credentials.name}
                   className="w-90 mb-2 md:w-94  bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder={contractorData.name}
-                  onDoubleClick={handleDoubleClick}
+                 
                   onChange={onChange}
                   required
                 />
@@ -156,8 +149,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder={contractorData.email}
-                  onDoubleClick={handleDoubleClick}
+               
                   onChange={onChange}
                   value={credentials.email}
                 />
@@ -200,8 +192,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder={contractorData.phoneno}
-                  onDoubleClick={handleDoubleClick}
+              
                   onChange={onChange}
                   value={credentials.phoneno}
                 />
@@ -216,8 +207,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder={contractorData.experience}
-                  onDoubleClick={handleDoubleClick}
+                
                   onChange={onChange}
                   value={credentials.experience}
                 />
@@ -231,8 +221,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder={contractorData.cost}
-                  onDoubleClick={handleDoubleClick}
+                 
                   onChange={onChange}
                   value={credentials.cost}
                 />
@@ -247,8 +236,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                  placeholder={contractorData.work}
-                  onDoubleClick={handleDoubleClick}
+             
                   onChange={onChange}
                   value={credentials.work}
                 />
