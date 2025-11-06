@@ -24,7 +24,7 @@ const Services = () => {
   // SEARCH Data
   const getSearchData = async () => {
     // API Call
-    const url = `http://localhost:3000/api/contractor/search?q=${query}`;
+    const url = `http://localhost:3000/api/contractor/search:q?q=${query}`;
     try {
       const response = await fetch(url, {
         method: "GET",
@@ -90,7 +90,7 @@ const Services = () => {
           <div className="container">Not found</div>
         )} */}
         {searchData.map((Data) => {
-          return <SearchCard key={Data._id} Data={Data} />;
+          return <SearchCard key={Data._id } Data={Data} />;
         })}
 
         {allContractorData.map((Contractor) => {
