@@ -8,7 +8,20 @@ import { useState } from "react";
 const Services = () => {
   const [query, setQuery] = useState("");
   const [noContractor, setNoContractor] = useState("");
-  const initialSearchData = [1, 2, 3]; // 1,2,3 is an temporary data so that the code doesn't run when refreshing
+  const initialSearchData = [
+    {
+      _id: "6902e81d5acbb88233e87a25",
+      name: "prajwal2",
+      email: "prajwal2@gmail.com",
+      password: "$2b$10$ireWxvErAxqwYKG2oRYBX.IvuwpyBHBePa1WTXyvlyFL9LGeP0vVa",
+      phoneno: 9856473829,
+      experience: "3 yrs",
+      cost: "10000-40000",
+      work: "app develper",
+      date: "2025-10-30T04:22:53.866Z",
+      __v: 0,
+    },
+  ]; // This is an temporary data so that the code doesn't run when refreshing
   const [searchData, setSearchData] = useState(initialSearchData);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +48,6 @@ const Services = () => {
       const result = await response.json();
       if (result) {
         setSearchData(result);
-        setQuery("");
       } else {
         alert("Coundn't retrive data");
       }
