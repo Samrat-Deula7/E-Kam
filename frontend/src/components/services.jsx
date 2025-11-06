@@ -1,7 +1,7 @@
 import Card from "./Card";
 import SearchCard from "../SearchCard";
 import ContractorContext from "../../context/ContractorContext";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 
@@ -31,7 +31,6 @@ const Services = () => {
 
   const onChange = (e) => {
     setQuery(e.target.value);
-    
   };
 
   // SEARCH Data
@@ -56,14 +55,11 @@ const Services = () => {
     }
   };
 
-   
   useEffect(() => {
-          getAllData();
-
-    console.log("This is the searched data", searchData);
+    getAllData();
     if (Array.isArray(searchData) && searchData.length === 0) {
       setNoContractor(
-        "Contractor not found . You can pick from the contractor available below"
+        `${query} not found . You can pick from the contractor available below`
       );
     } else {
       setNoContractor("");
@@ -95,25 +91,17 @@ const Services = () => {
         <h4>{noContractor}</h4>
       </div>
 
-      {/* "max-h-[1000px] overflow-hidden" This tailwind styling in sures that no matter how many cards we have only certain numbers of it will be shown */}
 
       <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3  place-items-center mt-6 mx-6 my-3 ">
-        {/* {searchData.length === 0 && (
-          <div className="container">Not found</div>
-        )} */}
+       
         {searchData.map((Data) => {
-          return <SearchCard key={Data._id } Data={Data} />;
+          return <SearchCard key={Data._id} Data={Data} />;
         })}
 
         {allContractorData.map((Contractor) => {
           return <Card key={Contractor._id} Contractor={Contractor} />;
         })}
-        {/* 
-        {searchData.length === 0
-          ? allContractorData.map((Contractor) => (
-              <Card key={Contractor._id} Contractor={Contractor} />
-            ))
-          : searchData.map((Data) => <SearchCard key={Data._id} Data={Data} />)} */}
+      
       </div>
     </div>
   );
