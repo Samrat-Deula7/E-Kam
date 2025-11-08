@@ -4,7 +4,7 @@ import MobileMenu from "./MobileMenu";
 import Home from "./components/Home";
 import Admin from "./components/Admin";
 import Services from "./components/services";
-import Footer from "./footer";
+import Footer from "./Footer";
 import { useState } from "react";
 import Signup from "./Signup";
 import Login from "./Login";
