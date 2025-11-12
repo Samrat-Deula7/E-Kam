@@ -8,6 +8,7 @@ const port =process.env.PORT || 3000;
 
 connectToMongo();
 app.use(cors());
+app.options("*", cors());
 app.use(express.json()) // This is an middleware
 
 //Available Routes
