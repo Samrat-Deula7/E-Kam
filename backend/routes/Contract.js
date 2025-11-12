@@ -147,6 +147,7 @@ router.get("/fetchdata", fetchcontractor, async (req, res) => {
 //ROUTE 4:getting all data for the public to see
 router.get("/fetchalldata", async (req, res) => {
   try {
+    console.log("incoming POST request from frontend")
     let contractor = await Contractor.find();
     res.json(contractor);
   } catch (error) {
