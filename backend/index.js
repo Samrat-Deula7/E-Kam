@@ -15,7 +15,6 @@ app.use(
     credentials: true,
   })
 );
-app.options("*", cors());
 app.use(express.json()) // This is an middleware
 
 //Available Routes
