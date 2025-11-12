@@ -150,7 +150,7 @@ router.get("/fetchalldata", async (req, res) => {
     let contractor = await Contractor.find();
     res.json(contractor);
   } catch (error) {
-    res.status(500).send("Some error occured");
+    res.status(500).send("Some error occured while fetching the data");
   }
 });
 
