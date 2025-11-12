@@ -8,6 +8,13 @@ const port =process.env.PORT || 3000;
 
 connectToMongo();
 app.use(cors());
+app.use(
+  cors({
+    origin: ["https://e-isyvys9dd-samrat-deulas-projects.vercel.app/"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.options("*", cors());
 app.use(express.json()) // This is an middleware
 
