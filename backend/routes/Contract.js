@@ -73,7 +73,7 @@ router.post(
       res.json({ authtoken: authtoken });
     } catch (error) {
       console.error(error);
-      res.status(500).send("Some error occured");
+      res.status(500).send("Some error occured while creating contractor");
     }
   }
 );
@@ -120,7 +120,7 @@ router.post(
       //  res.json(contractor.id);
     } catch (error) {
       console.error(error);
-      res.status(500).send("Internal server error");
+      res.status(500).send("Internal server error while logging in");
     }
   }
 );
@@ -140,7 +140,7 @@ router.get("/fetchdata", fetchcontractor, async (req, res) => {
     res.json(req.contractor);
   } catch (error) {
     console.error(error);
-    res.status(500).send("Some error occured");
+    res.status(500).send("Some error occured fetching contractor data");
   }
 });
 
@@ -150,7 +150,7 @@ router.get("/fetchalldata", async (req, res) => {
     let contractor = await Contractor.find();
     res.json(contractor);
   } catch (error) {
-    res.status(500).send("Some error occured while fetching the data");
+    res.status(500).send("Some error occured while fetching all the data");
   }
 });
 
@@ -235,7 +235,7 @@ router.put(
       res.json({ contractor, contractorId: contractor.id });
     } catch (error) {
       console.error(error);
-      res.status(500).send("Some error occured");
+      res.status(500).send("Some error occured while updating the data");
     }
   }
 );
@@ -259,7 +259,7 @@ router.delete("/deletenote/:id", fetchcontractor, async (req, res) => {
     res.json({  contractor: contractor });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Some error occured");
+    res.status(500).send("Some error occured ehile deleting the data");
   }
 });
 
