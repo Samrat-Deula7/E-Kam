@@ -38,7 +38,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
             if (credentials.password == credentials.cpassword) {
 
           // API Call
-          const url =` http://localhost:3000/api/contractor/updatedata/${id}`;
+          const url = ` https://e-kam.onrender.com/api/contractor/updatedata/${id}`;
           const { name, email, password, phoneno, experience, cost, work } =
             credentials;
 

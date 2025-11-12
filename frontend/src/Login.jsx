@@ -29,7 +29,7 @@ const Login = ({
   const createUser = async () => {
     setSignupBtn(true);
     // API Call
-    const url = "http://localhost:3000/api/contractor/login";
+    const url = "https://e-kam.onrender.com/api/contractor/login";
     try {
       const response = await fetch(url, {
         method: "POST",

@@ -2,7 +2,7 @@ import ContractorContext from "./ContractorContext";
 import { useState } from "react";
 
 const ContractorState = (props) => {
-  const host = "http://localhost:3000";
+  const host = "https://e-kam.onrender.com";
   const initialData = [];
   const [contractorData, setContractorData] = useState(initialData);
   const allInitialData = [];

@@ -36,7 +36,7 @@ const Services = () => {
   // SEARCH Data
   const getSearchData = async () => {
     // API Call
-    const url = `http://localhost:3000/api/contractor/search:q?q=${query}`;
+    const url = `https://e-kam.onrender.com/api/contractor/search:q?q=${query}`;
     try {
       const response = await fetch(url, {
         method: "GET",
