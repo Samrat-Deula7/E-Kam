@@ -5,32 +5,32 @@ const { Schema } = mongoose;
 const ContractorSchema = new Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
   email: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   password: {
     type: String,
-    require: true,
+    required: true,
   },
   phoneno:{
     type:Number,
-    require:true
+    required:true
   },
   experience:{
     type:String,
-    require:true,
+    required:true,
   },
   cost:{
     type:String,
-    require:true
+    required:true
   },
   work:{
     type:String,
-    require:true
+    required:true
   },
   date: {
     type: Date,
