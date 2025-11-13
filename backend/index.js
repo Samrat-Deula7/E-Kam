@@ -10,7 +10,7 @@ connectToMongo();
 // app.use(cors());
 app.use(
   cors({
-    origin: ["https://e-7vyff6nuf-samrat-deulas-projects.vercel.app"],
+    origin: ["https://e-z0wudr59t-samrat-deulas-projects.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
