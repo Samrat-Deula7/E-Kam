@@ -10,7 +10,7 @@ connectToMongo();
 // app.use(cors());
 app.use(
   cors({
-    origin: ["https://e-kam.vercel.app/"],
+    origin: ["https://e-kam.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
