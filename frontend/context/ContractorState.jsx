@@ -2,7 +2,7 @@ import ContractorContext from "./ContractorContext";
 import { useState } from "react";
 
 const ContractorState = (props) => {
-  const host = "https://e-kam.onrender.com";
+  const host = "https://e-kam-jp2a.vercel.app/";
   const initialData = [];
   const [contractorData, setContractorData] = useState(initialData);
   const allInitialData = [];

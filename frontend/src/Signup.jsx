@@ -40,7 +40,7 @@ const Signup = ({
           if (credentials.password == credentials.cpassword) {
             // API Call
             const url =
-              "https://e-kam.onrender.com/api/contractor/createcontractor";
+              "https://e-kam-jp2a.vercel.app/api/contractor/createcontractor";
             const { name, email, password, phoneno, experience, cost, work } =
               credentials;
 
