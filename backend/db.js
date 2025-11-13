@@ -1,4 +1,6 @@
 const mongoose =require("mongoose");
+require("dotenv").config();
+
 const CloudMongoDB = process.env.CloudMongoDB;
 
 const mongoURL = CloudMongoDB;
