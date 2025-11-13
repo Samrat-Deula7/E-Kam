@@ -73,7 +73,7 @@ router.post(
       res.json({ authtoken: authtoken });
     } catch (error) {
       console.error(error);
-      res.status(500).send("Some error occured while creating contractor");
+      res.status(500).json({ error: error.message, stack: error.stack });
     }
   }
 );
