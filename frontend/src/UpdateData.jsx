@@ -38,7 +38,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
             if (credentials.password == credentials.cpassword) {
 
           // API Call
-          const url = ` https://e-kam-jp2a.vercel.app/api/contractor/updatedata/${id}`;
+          const url = ` https://e-kam-jwlb.vercel.app/api/contractor/updatedata/${id}`;
           const { name, email, password, phoneno, experience, cost, work } =
             credentials;
 

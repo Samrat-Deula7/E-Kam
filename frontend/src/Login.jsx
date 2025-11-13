@@ -29,7 +29,7 @@ const Login = ({
   const createUser = async () => {
     setSignupBtn(true);
     // API Call
-    const url = "https://e-kam-jp2a.vercel.app/api/contractor/login";
+    const url = "https://e-kam-jwlb.vercel.app/api/contractor/login";
     try {
       const response = await fetch(url, {
         method: "POST",
