@@ -263,7 +263,7 @@ router.delete("/deletenote/:id", fetchcontractor, async (req, res) => {
 });
 
 // Route 7:This is search api for the search bar url(/api/contractor/search)
-router.get("/search:q", async (req, res) => {
+router.get("/search", async (req, res) => {
   try {
     const q = req.query.q;
     // const q = await req.headers["query"];
