@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import {  useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = ({
@@ -10,7 +10,7 @@ const Navbar = ({
 }) => {
   const navigation = useNavigate();
   const location = useLocation();
-
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (token) {
@@ -20,6 +20,12 @@ const Navbar = ({
     }
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("contractorId");
@@ -27,13 +33,19 @@ const Navbar = ({
     navigation("/");
   };
   return (
-    <nav className="fixed top-0 max-w-screen z-40 bg-[rgba(10,10,10,0.9)] backdrop-blur-lg border-b border-white/10 shadow-lg">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? " backdrop-blur-xl border-b border-white/10 shadow-lg"
+          : "bg-transparent"
+      }`}
+    >
       <div className="min-w-screen mx-auto px-4">
         <div className="flex justify-between sm:justify-around items-center h-16">
           <div className="w-2xl">
             <Link
               to="/"
-              className=" text-2xl md:text-3xl lg:text-4xl font-bold  bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent"
+              className=" text-2xl md:text-3xl lg:text-4xl font-bold   bg-[#3b82f6] bg-clip-text text-transparent"
             >
               E-Kam
             </Link>
@@ -45,24 +57,28 @@ const Navbar = ({
           <div className="hidden md:flex items-center gap-x-8">
             <Link
               to="/"
-              className={` md:text-xl lg:text-3xl bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent cursor-pointer hover:text-stone-200 ${
-                location.pathname === "/" ? "text-white" : ""
+              className={` md:text-xl lg:text-3xl text-[#3b82f6] cursor-pointer hover:text-[#06b6d4] ${
+                location.pathname === "/" ? "text-[#06b6d4]" : "text-[#3b82f6]"
               }`}
             >
               Home
             </Link>
             <Link
               to="/services"
-              className={` md:text-xl lg:text-3xl bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent cursor-pointer hover:text-stone-200 ${
-                location.pathname === "/services" ? "text-white" : ""
+              className={` md:text-xl lg:text-3xl text-[#3b82f6] cursor-pointer hover:text-[#06b6d4] ${
+                location.pathname === "/services"
+                  ? "text-[#06b6d4]"
+                  : "text-[#3b82f6]"
               }`}
             >
               Services
             </Link>
             <Link
               to="/admin"
-              className={` md:text-xl lg:text-3xl bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent cursor-pointer hover:text-stone-200 ${
-                location.pathname === "/admin" ? "text-white" : ""
+              className={` md:text-xl lg:text-3xl   text-[#3b82f6] cursor-pointer hover:text-[#06b6d4] ${
+                location.pathname === "/admin"
+                  ? "text-[#06b6d4]"
+                  : "text-[#3b82f6]"
               }${
                 isLoggedIn
                   ? "  pointer-events-auto"
@@ -74,7 +90,7 @@ const Navbar = ({
           </div>
 
           <button
-            className={`border border-gray-500/50 py-1 px-3  2xl:py-3 2xl:md:px-6 cursor-pointer rounded font-medium tracking-all duration-200 text-gray-600 hover:text-stone-200  hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10${
+            className={`border border-[#2563eb] py-1 px-3  2xl:py-3 2xl:md:px-6 cursor-pointer rounded font-medium tracking-all duration-200 text-[#3b82f6] hover:text-[#06b6d4]   hover:border-[#06b6d4] hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10${
               !isLoggedIn
                 ? "  pointer-events-auto"
                 : "h-0 opacity-0 pointer-events-none"
@@ -84,7 +100,7 @@ const Navbar = ({
             Become a Contractor
           </button>
           <button
-            className={`border border-gray-500/50 py-1 px-3  2xl:py-3 2xl:md:px-6  cursor-pointer rounded font-medium tracking-all duration-200 text-gray-600 hover:text-stone-200  hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10${
+            className={`border border-slate-custom-700 py-1 px-3  2xl:py-3 2xl:md:px-6  cursor-pointer rounded font-medium tracking-all duration-200 text-gray-600 hover:text-stone-200  hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10${
               isLoggedIn
                 ? "  pointer-events-auto"
                 : "h-0 opacity-0 pointer-events-none"

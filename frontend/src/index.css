@@ -6,6 +6,8 @@ html,body{
  padding: 0;  
  overflow-x: hidden;
  font-family: "Space Grotesk", sans-serif;
- background: #181C14;
+ background: rgba(2, 6, 23, 0.8);
  color: #f3f4f6;
 }
+
+
