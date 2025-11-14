@@ -119,7 +119,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
             onClick={() => {
               setUpdateOpen(false);
             }}
-            className="absolute top-6 right-6 text-white text-3xl focus:outline-none cursor-pointer "
+            className="absolute top-25 right-10 text-white text-3xl focus:outline-none cursor-pointer "
             aria-label="Close button"
           >
             &times;
@@ -135,7 +135,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   name="name"
                   value={credentials.name}
                   className="w-90 mb-2 md:w-94  bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                 
                   onChange={onChange}
                   required
                 />
@@ -149,7 +148,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-               
                   onChange={onChange}
                   value={credentials.email}
                 />
@@ -192,7 +190,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-              
                   onChange={onChange}
                   value={credentials.phoneno}
                 />
@@ -207,7 +204,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                
                   onChange={onChange}
                   value={credentials.experience}
                 />
@@ -221,7 +217,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-                 
                   onChange={onChange}
                   value={credentials.cost}
                 />
@@ -236,7 +231,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                   required
                   // value={formData.email}
                   className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-             
                   onChange={onChange}
                   value={credentials.work}
                 />
