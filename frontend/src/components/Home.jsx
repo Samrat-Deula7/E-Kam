@@ -8,11 +8,11 @@ const Home = () => {
 
   return (
     <div className=" pt-10 min-h-screen px-8 flex  items-center gap-x-7 w-full">
-      <div className="grid grid-cols-1 ml-35 place-items-center md:place-items-start ">
+      <div className="grid grid-cols-1 md:ml-35 place-items-center md:place-items-start ">
         <h1 className="font-bold text-3xl mb-5 md:text-6xl md:mb-7">
           Find the <span className="text-[#2563eb]">Right Help</span>, Fast
         </h1>
-        <h3 className="text-2xl md:3xl text-center md:text-left mb-3 md:mb-4 text-[#cbd5e1]">
+        <h3 className="text-2xl md:3xl text-left md:text-left mb-3 md:mb-4 text-[#cbd5e1]">
           We connect you with skilled contractors for all kinds of odd jobs and
           home services.
           <span>
