@@ -73,7 +73,7 @@ router.post(
       res.json({ authtoken: authtoken });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: error.message, stack: error.stack });
+      res.status(500).send("Some error occured while creating contractor");
     }
   }
 );
@@ -81,9 +81,7 @@ router.post(
 //ROUTE 2:Create a User using:POST "/api/contractor/login".Doesn't require login
 router.post(
   "/login",
-  [
-    body("email", "Enter a valid email").isEmail(),
-  ],
+  [body("email", "Enter a valid email").isEmail()],
   async (req, res) => {
     const errors = validationResult(req);
     // If error is empty is false then there is error so the if statement cathes the error.
@@ -147,7 +145,7 @@ router.get("/fetchdata", fetchcontractor, async (req, res) => {
 //ROUTE 4:getting all data for the public to see
 router.get("/fetchalldata", async (req, res) => {
   try {
-    console.log("incoming POST request from frontend")
+    console.log("incoming POST request from frontend");
     let contractor = await Contractor.find();
     res.json(contractor);
   } catch (error) {
@@ -156,7 +154,7 @@ router.get("/fetchalldata", async (req, res) => {
 });
 
 //ROUTE 5:update an existing contractor info using:put  /api/contractor/updatedata/:id, login required.
-        // The fetchcontractor is an middle ware that does the authentication using auth token
+// The fetchcontractor is an middle ware that does the authentication using auth token
 router.put(
   "/updatedata/:id",
   [
@@ -257,7 +255,7 @@ router.delete("/deletenote/:id", fetchcontractor, async (req, res) => {
     }
 
     note = await Contractor.findByIdAndDelete(req.params.id);
-    res.json({  contractor: contractor });
+    res.json({ contractor: contractor });
   } catch (error) {
     console.error(error);
     res.status(500).send("Some error occured ehile deleting the data");
@@ -265,15 +263,15 @@ router.delete("/deletenote/:id", fetchcontractor, async (req, res) => {
 });
 
 // Route 7:This is search api for the search bar url(/api/contractor/search)
-router.get("/search",  async (req, res) => {
+router.get("/search:q", async (req, res) => {
   try {
-    const  q  = req.query.q;
-        // const q = await req.headers["query"];
+    const q = req.query.q;
+    // const q = await req.headers["query"];
 
     const ContractorData = await Contractor.find({
       work: { $regex: q, $options: "i" }, // webdev = Webdev
     }).sort({ createdAt: -1 }); // newly saved data will be shown first
-    return res.status(200).json( ContractorData );
+    return res.status(200).json(ContractorData);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
