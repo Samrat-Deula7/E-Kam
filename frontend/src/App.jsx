@@ -47,6 +47,7 @@ function App() {
             menuOpen={menuOpen}
             setmenuOpen={setmenuOpen}
             contractorBtn={contractorBtn}
+            signupBtn={signupBtn}
             setcontractorBtn={setcontractorBtn}
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}

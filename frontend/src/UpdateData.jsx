@@ -119,7 +119,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
             onClick={() => {
               setUpdateOpen(false);
             }}
-            className="absolute top-25 right-10 text-white text-3xl focus:outline-none cursor-pointer "
+            className="absolute top-6 right-6 text-white text-3xl focus:outline-none cursor-pointer "
             aria-label="Close button"
           >
             &times;
