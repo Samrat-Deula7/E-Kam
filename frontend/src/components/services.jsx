@@ -68,7 +68,7 @@ const Services = () => {
 
   return (
     <div className="pt-18 min-h-screen px-8 flex flex-col items-center justify-center w-full">
-      <h1 className="font-bold bg-linear-to-r from-stone-600 to-white bg-clip-text text-transparent text-2xl mb-5 md:text-6xl md:mb-7">
+      <h1 className="font-bold text-[#2563eb] text-2xl mb-5 md:text-6xl md:mb-7">
         Search for the service you want
       </h1>
       <div>
@@ -91,9 +91,7 @@ const Services = () => {
         <h4>{noContractor}</h4>
       </div>
 
-
       <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3  place-items-center mt-6 mx-6 my-3 ">
-       
         {searchData.map((Data) => {
           return <SearchCard key={Data._id} Data={Data} />;
         })}
@@ -101,7 +99,6 @@ const Services = () => {
         {allContractorData.map((Contractor) => {
           return <Card key={Contractor._id} Contractor={Contractor} />;
         })}
-      
       </div>
     </div>
   );
