@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 const Navbar = ({
   setmenuOpen,
   setcontractorBtn,
-  contractorBtn,
   isLoggedIn,
   setIsLoggedIn,
+  contractorBtn,
   signupBtn,
 }) => {
   const navigation = useNavigate();
@@ -36,12 +36,14 @@ const Navbar = ({
   };
   return (
     <nav
-      // <nav className="fixed top-0 max-w-screen z-40 bg-[rgba(10,10,10,0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
-
-      className={`fixed top-0 max-w-screen z-50 transition-all duration-300 ${
-        scrolled || contractorBtn || signupBtn
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? " backdrop-blur-xl border-b border-white/10 shadow-lg"
+          : "bg-transparent"
+      }${
+        contractorBtn || signupBtn
           ? " backdrop-blur-xl border-b border-white/10 shadow-lg hidden"
-          : "bg-transparent "
+          : ""
       }`}
     >
       <div className="min-w-screen mx-auto px-4">
