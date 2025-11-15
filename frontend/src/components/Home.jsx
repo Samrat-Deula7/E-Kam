@@ -1,4 +1,3 @@
-import HomeHero from "@/HomeHero";
 const Home = () => {
 //   Find the Right Help, Fast
 // We connect you with skilled contractors for all kinds of odd jobs and home services.
@@ -11,7 +10,7 @@ const Home = () => {
   ];
   return (
     <>
-      <HomeHero />
+    
       <div className="relative flex items-center  justify-center">
         <section className="w-full  text-[#2563eb] py-20 mb-20">
           <div className="max-w-6xl mx-auto px-4">

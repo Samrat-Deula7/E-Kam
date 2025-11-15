@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import ContractorState from "../context/ContractorState";
 import ProtectedRoute from "./ProtectedRoute";
 import UpdateData from "./UpdateData";
-
+import HomeHero from "./HomeHero";
 function App() {
   const [menuOpen, setmenuOpen] = useState(false);
   const [contractorBtn, setcontractorBtn] = useState(false);
@@ -70,7 +70,15 @@ function App() {
           />
           <UpdateData updateOpen={updateOpen} setUpdateOpen={setUpdateOpen} />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <>
+                  <HomeHero />
+                  <Home />
+                </>
+              }
+            />
             <Route path="/services" element={<Services />} />
 
             {/* The protected route is there to not allow user to get access of
@@ -91,7 +99,7 @@ function App() {
               }
             />
           </Routes>
-          
+
           <Footer />
         </Router>
       </ContractorState>
