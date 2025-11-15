@@ -91,6 +91,7 @@ function App() {
               }
             />
           </Routes>
+          
           <Footer />
         </Router>
       </ContractorState>
