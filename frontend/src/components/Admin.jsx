@@ -37,7 +37,7 @@ const Admin = ({ setUpdateOpen, setIsLoggedIn, updateOpen }) => {
             <span>
               <i
                 onClick={() => setUpdateOpen(true)}
-                className="fa-solid fa-pen-to-square cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"
+                className="fa-solid fa-pen-to-square cursor-pointer  duration-100 hover:text-gray-400 hover:-translate-y-1 text-xl"
               ></i>
             </span>
           </h2>
@@ -101,7 +101,7 @@ const Admin = ({ setUpdateOpen, setIsLoggedIn, updateOpen }) => {
             <span>
               <i
                 onClick={deleteAccount}
-                className="fa-solid fa-trash cursor-pointer  hover:text-gray-400 hover:-translate-y-1 text-xl"
+                className="fa-solid fa-trash cursor-pointer duration-100 hover:text-gray-400 hover:-translate-y-1 text-xl mb-4"
               ></i>
             </span>
           </h2>

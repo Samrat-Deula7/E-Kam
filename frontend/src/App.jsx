@@ -51,6 +51,7 @@ function App() {
             setcontractorBtn={setcontractorBtn}
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
+            updateOpen={updateOpen}
           />
           <MobileMenu
             menuOpen={menuOpen}

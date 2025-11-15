@@ -9,6 +9,7 @@ const Navbar = ({
   setIsLoggedIn,
   contractorBtn,
   signupBtn,
+  updateOpen,
 }) => {
   const navigation = useNavigate();
   const location = useLocation();
@@ -41,7 +42,7 @@ const Navbar = ({
           ? " backdrop-blur-xl border-b border-white/10 shadow-lg"
           : "bg-transparent"
       }${
-        contractorBtn || signupBtn
+        contractorBtn || signupBtn || updateOpen
           ? " backdrop-blur-xl border-b border-white/10 shadow-lg hidden"
           : ""
       }`}
