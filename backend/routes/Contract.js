@@ -266,7 +266,6 @@ router.delete("/deletenote/:id", fetchcontractor, async (req, res) => {
 router.get("/search", async (req, res) => {
   try {
     const q = req.query.q;
-    // const q = await req.headers["query"];
 
     const ContractorData = await Contractor.find({
       work: { $regex: q, $options: "i" }, // webdev = Webdev

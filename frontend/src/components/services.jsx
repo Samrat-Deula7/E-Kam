@@ -8,6 +8,7 @@ import { useState } from "react";
 const Services = () => {
   const [query, setQuery] = useState("");
   const [noContractor, setNoContractor] = useState("");
+
   const initialSearchData = [
     {
       _id: "6902e81d5acbb88233e87a25",
@@ -33,10 +34,10 @@ const Services = () => {
     setQuery(e.target.value);
   };
 
-  // SEARCH Data
+  // SEARCH Data 
   const getSearchData = async () => {
     // API Call
-    const url = `https://e-kam-jwlb.vercel.app/api/contractor/search:q?q=${query}`;
+    const url = `https://e-kam-jwlb.vercel.app/api/contractor/search?q=${query}`;
     try {
       const response = await fetch(url, {
         method: "GET",

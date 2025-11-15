@@ -45,7 +45,7 @@ const Navbar = ({
           <div className="w-2xl">
             <Link
               to="/"
-              className=" text-2xl md:text-3xl lg:text-4xl font-bold   bg-[#3b82f6] bg-clip-text text-transparent"
+              className=" text-2xl md:text-3xl lg:text-4xl font-bold   text-[#3b82f6]"
             >
               E-Kam
             </Link>
