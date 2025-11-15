@@ -106,7 +106,7 @@ const Navbar = ({
             Become a Contractor
           </button>
           <button
-            className={`border border-slate-custom-700 py-1 px-3  2xl:py-3 2xl:md:px-6  cursor-pointer rounded font-medium tracking-all duration-200 text-gray-600 hover:text-stone-200  hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10${
+            className={`border w-xl md:w-50 mr-5 border-[#2563eb] py-1 px-3  2xl:py-3 2xl:md:px-6  cursor-pointer rounded font-medium tracking-all duration-200 text-[#3b82f6] hover:text-[#06b6d4]   hover:border-[#06b6d4] hover:-translate-y-0.5 hover:shadow-[0_0_15px_ rgba(128, 128, 128, 0.5)] hover:bg-gray-500/10${
               isLoggedIn
                 ? "  pointer-events-auto"
                 : "h-0 opacity-0 pointer-events-none"

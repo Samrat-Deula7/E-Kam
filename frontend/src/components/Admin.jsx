@@ -22,15 +22,15 @@ const Admin = ({ setUpdateOpen, setIsLoggedIn, updateOpen }) => {
   };
   return (
     <div className="pt-16  min-h-screen px-8 flex flex-col items-center justify-center w-full">
-      <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center">
-        <h1 className="font-bold bg-linear-to-r from-stone-600 to-white bg-clip-text text-transparent  mb-5 text-xl md:text-3xl lg:text-4xl ">
-          Welcome Contractor:
+      <div className="grid grid-cols-1 xl:grid-cols-2 place-items-center">
+        <h1 className="font-bold text-[#cbd5e1]  mb-5 text-xl md:text-3xl lg:text-4xl ">
+          <span className="text-[#2563eb]">Welcome Contractor:</span>
           <br /> You can Update and Delete your information here
         </h1>
 
-        <div className=" w-100 md:w-125 lg:w-150">
-          <h3 className="text-2xl md:3xl text-center mb-3 md:mb-4 text-stone-600">
-            Your Details:
+        <div className=" w-85  md:w-150 lg:w-150">
+          <h3 className="text-2xl md:3xl text-center mb-3 md:mb-4 text-[#cbd5e1]">
+            Your <span className="text-[#2563eb]">Details:</span>
           </h3>
           <h2 className="mb-4">
             Do You want to update anything??...{" "}
@@ -46,8 +46,10 @@ const Admin = ({ setUpdateOpen, setIsLoggedIn, updateOpen }) => {
             <h2>
               <span className="text-gray-400 font-bold text-xl md:text-2xl ">
                 Name:
-              </span>{" "}
-              {contractorData.name}
+              </span>
+              <span className="text-[#2563eb] font-bold text-xl md:text-2xl">
+                {contractorData.name}
+              </span>
             </h2>
           </div>
 
