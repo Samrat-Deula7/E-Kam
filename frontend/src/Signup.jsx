@@ -143,14 +143,14 @@ const Signup = ({
 
   return (
     <div
-      className={`fixed top-0 left-0 max-w-screen w-full bg-[#181C14] z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${
+      className={`fixed top-0 left-0 min-w-screen  bg-[#020617CC] z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${
         contractorBtn
           ? "h-screen opacity-100 pointer-events-auto"
           : "h-0 opacity-0 pointer-events-none"
       }`}
     >
-      <div className="w-96 md:w-xl lg:w-2xl xl:w-3xl text-center">
-        <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-linear-to-r from-gray-600 to-white bg-clip-text text-transparent text-center">
+      <div className="relative w-[300px] lg:w-[600px] xl:w-[800px] 2xl:w-[800px] text-center bg-[#10172a] rounded-2xl py-3 px-2">
+        <h2 className="text-2xl  xl:text-6xl font-bold mb-8 text-[#2563eb] text-center">
           Sign Up
         </h2>
         <h6 className="text-red-500">{validationError.userExistsError}</h6>
@@ -159,7 +159,7 @@ const Signup = ({
           onClick={() => {
             setcontractorBtn(false);
           }}
-          className="absolute top-6 right-6 text-white text-3xl focus:outline-none cursor-pointer "
+          className="absolute top-4 right-6 text-xl lg:text-3xl  focus:outline-none cursor-pointer "
           aria-label="Close button"
         >
           &times;
@@ -174,7 +174,7 @@ const Signup = ({
                 id="name"
                 name="name"
                 value={credentials.name}
-                className="w-90 mb-2 md:w-94  bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+                className="w-[280px] mb-1 xl:mb-2 xl:w-94  bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Name...."
                 onChange={onChange}
               />
@@ -186,7 +186,7 @@ const Signup = ({
                 id="email"
                 name="email"
                 // value={formData.email}
-                className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+                className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="example@gmail.com"
                 onChange={onChange}
                 value={credentials.email}
@@ -200,7 +200,7 @@ const Signup = ({
                 id="password"
                 name="password"
                 // value={formData.email}
-                className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+                className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Enter your password"
                 onChange={onChange}
                 value={credentials.password}
@@ -213,7 +213,7 @@ const Signup = ({
                 id="cpassword"
                 name="cpassword"
                 // value={formData.email}
-                className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+                className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Confirm password"
                 onChange={onChange}
                 value={credentials.cpassword}
@@ -226,7 +226,7 @@ const Signup = ({
                 id="phoneno"
                 name="phoneno"
                 // value={formData.email}
-                className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+                className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Enter your phone no"
                 onChange={onChange}
                 value={credentials.phoneno}
@@ -240,7 +240,7 @@ const Signup = ({
                 id="experience"
                 name="experience"
                 // value={formData.email}
-                className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+                className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Enter your work experience"
                 onChange={onChange}
                 value={credentials.experience}
@@ -253,7 +253,7 @@ const Signup = ({
                 id="cost"
                 name="cost"
                 // value={formData.email}
-                className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+                className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Enter your price range"
                 onChange={onChange}
                 value={credentials.cost}
@@ -267,7 +267,7 @@ const Signup = ({
                 id="work"
                 name="work"
                 // value={formData.email}
-                className="w-90 mb-2 md:w-94 bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+                className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Enter what work you do"
                 onChange={onChange}
                 value={credentials.work}
@@ -278,7 +278,7 @@ const Signup = ({
           <button
             onClick={createUser}
             type="submit"
-            className="w-90 md:w-full mb-2 bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
+            className="w-[280px] xl:w-full mb-2 mt-1 bg-blue-500 text-white py-1 px-3 xl:py-3 xl:px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
           >
             Sign Up
           </button>

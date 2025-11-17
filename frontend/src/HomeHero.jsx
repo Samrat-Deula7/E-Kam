@@ -5,7 +5,7 @@ import { Vortex } from "./components/ui/vortex";
 
 const HomeHero = () => {
   return (
-    <Vortex  className="  w-full h-full">
+    <Vortex  className="  min-w-screen h-full">
       <div className=" pt-10 min-h-screen px-8 flex  items-center gap-x-7 w-full">
         <div className="grid grid-cols-1 md:ml-35 place-items-center md:place-items-start ">
           <h1 className="font-bold text-3xl mb-5 md:text-6xl md:mb-7">

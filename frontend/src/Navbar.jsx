@@ -41,10 +41,6 @@ const Navbar = ({
         scrolled
           ? " backdrop-blur-xl border-b border-white/10 shadow-lg"
           : "bg-transparent"
-      }${
-        contractorBtn || signupBtn || updateOpen
-          ? " backdrop-blur-xl border-b border-white/10 shadow-lg hidden"
-          : ""
       }`}
     >
       <div className="min-w-screen mx-auto px-4">
@@ -119,7 +115,7 @@ const Navbar = ({
 
           {/* This is the mobile menu */}
           <div
-            className=" w-7 h-5 relative left-0 cursor-pointer z-40 md:hidden"
+            className=" w-7 h-5 relative -left-4 cursor-pointer z-40 md:hidden"
             onClick={() => setmenuOpen((prev) => !prev)}
           >
             &#9776;
