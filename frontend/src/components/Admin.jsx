@@ -4,8 +4,13 @@ import { useNavigate } from "react-router-dom";
 import ContractorContext from "../../context/ContractorContext";
 import { useState } from "react";
 
-const Admin = ({ setUpdateOpen, setIsLoggedIn, updateOpen }) => {
-  const [deleteButton, setDeleteButton] = useState(false);
+const Admin = ({
+  setUpdateOpen,
+  setIsLoggedIn,
+  updateOpen,
+  deleteButton,
+  setDeleteButton,
+}) => {
   const context = useContext(ContractorContext);
   const { deleteData, getData, contractorData } = context;
 

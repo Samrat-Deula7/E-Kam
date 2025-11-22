@@ -18,11 +18,12 @@ function App() {
   const [signupBtn, setSignupBtn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
+  const [deleteButton, setDeleteButton] = useState(false);
 
   // The following useEffect prevents the page form scrolling when the hamburger icon is open
 
   useEffect(() => {
-    if (menuOpen || contractorBtn) {
+    if (menuOpen || contractorBtn || signupBtn || deleteButton || updateOpen) {
       const scrollY = window.scrollY;
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
@@ -38,7 +39,7 @@ function App() {
       document.body.style.overflow = "";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
-  }, [menuOpen, contractorBtn]);
+  }, [menuOpen, contractorBtn, signupBtn, deleteButton, updateOpen]);
   return (
     <>
       <ContractorState>
@@ -87,6 +88,8 @@ function App() {
                     setUpdateOpen={setUpdateOpen}
                     setIsLoggedIn={setIsLoggedIn}
                     updateOpen={updateOpen}
+                    deleteButton={deleteButton}
+                    setDeleteButton={setDeleteButton}
                   />
                 </ProtectedRoute>
               }
