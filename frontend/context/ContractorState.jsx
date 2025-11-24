@@ -87,6 +87,7 @@ const ContractorState = (props) => {
         contractorData,
         getAllData,
         allContractorData,
+        setContractorData,
       }}
     >
       {props.children}
