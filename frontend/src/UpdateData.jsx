@@ -7,6 +7,16 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
   
   useEffect(() => {
     getData();
+    setCredentials({
+      name: contractorData.name,
+      email: contractorData.email,
+      password: "",
+      cpassword: "",
+      phoneno: contractorData.phoneno,
+      experience: contractorData.experience,
+      cost: contractorData.cost,
+      work: contractorData.work,
+    });
   }, [updateOpen]);
   const [validationError, setValidationError] = useState({
     name: "",
@@ -19,13 +29,13 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
     work: "",
   });
   const [credentials, setCredentials] = useState({
-    name: contractorData.name,
-    email: contractorData.email,
+    name: "",
+    email: "",
     password: "",
     phoneno: "",
-    experience: contractorData.experience,
-    cost: contractorData.cost,
-    work: contractorData.work,
+    experience: "",
+    cost: "",
+    work: "",
   });
 
   const onChange = (e) => {
