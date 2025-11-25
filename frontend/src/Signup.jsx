@@ -1,145 +1,123 @@
 import { useState } from "react";
 
+const Signup = ({ setcontractorBtn, contractorBtn, setSignupBtn }) => {
+  const [validationError, setValidationError] = useState({
+    name: "",
+    email: "",
+    password: "",
+    phoneno: "",
+    experience: "",
+    cost: "",
+    work: "",
+    userExistsError: "",
+  });
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+    cpassword: "",
+    phoneno: "",
+    experience: "",
+    cost: "",
+    work: "",
+  });
 
-const Signup = ({
-  setcontractorBtn,
-  contractorBtn,
-  setSignupBtn,
-  
-}) => {
-     const [validationError, setValidationError] = useState({
-       name: "",
-       email: "",
-       password: "",
-       phoneno: "",
-       experience: "",
-       cost: "",
-       work: "",
-       userExistsError:""
-     });
-    const [credentials, setCredentials] = useState({
-      name: "",
-      email: "",
-      password: "",
-      cpassword: "",
-      phoneno: "",
-      experience: "",
-      cost: "",
-      work:"",
-    });
-
-     const onChange = (e) => {
-       setCredentials({ ...credentials, [e.target.name]: e.target.value });
-     };
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
   const preventDefault = async (e) => {
     e.preventDefault();
   };
 
-   const createUser = async () => {
-        try {
-          if (credentials.password == credentials.cpassword) {
-            // API Call
-            const url =
-              "https://e-kam-jwlb.vercel.app/api/contractor/createcontractor";
-            const { name, email, password, phoneno, experience, cost, work } =
-              credentials;
+  const createUser = async () => {
+    try {
+      if (credentials.password == credentials.cpassword) {
+        // API Call
+        const url =
+          "https://e-kam-jwlb.vercel.app/api/contractor/createcontractor";
+        const { name, email, password, phoneno, experience, cost, work } =
+          credentials;
 
-            const response = await fetch(url, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                name,
-                email,
-                password,
-                phoneno,
-                experience,
-                cost,
-                work,
-              }),
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            phoneno,
+            experience,
+            cost,
+            work,
+          }),
+        });
+        const result = await response.json();
+        console.log(result);
+        if (result.authtoken) {
+          // Save the auth token and redirect
+          setCredentials({
+            name: "",
+            email: "",
+            password: "",
+            cpassword: "",
+            phoneno: "",
+            experience: "",
+            cost: "",
+            work: "",
+          });
+          setValidationError({
+            name: "",
+            email: "",
+            password: "",
+            phoneno: "",
+            experience: "",
+            cost: "",
+            work: "",
+            userExistsError: "",
+          });
+          setcontractorBtn(false);
+          setSignupBtn(true);
+          localStorage.setItem("token", result.authtoken);
+          alert("Account Created");
+        } else {
+          if (result.error) {
+            const alreadyExistsError = result.error;
+            setValidationError({
+              name: "",
+              email: "",
+              password: "",
+              phoneno: "",
+              experience: "",
+              cost: "",
+              work: "",
+              userExistsError: alreadyExistsError,
             });
-            const result = await response.json();
-            console.log(result);
-            if (result.authtoken) {
-              // Save the auth token and redirect
-              setCredentials({
-                name: "",
-                email: "",
-                password: "",
-                cpassword: "",
-                phoneno: "",
-                experience: "",
-                cost: "",
-                work: "",
-              });
-               setValidationError({
-                 name: "",
-                 email: "",
-                 password: "",
-                 phoneno: "",
-                 experience: "",
-                 cost: "",
-                 work: "",
-                 userExistsError:"",
-               });
-              setcontractorBtn(false);
-              setSignupBtn(true);
-              localStorage.setItem("token", result.authtoken);
-              alert("Account Created");
-              
-              //  props.showAlert("Successfully created your account", "success");
-            } else {
-              //  props.showAlert("Invalid Details", "danger");
-              // alert("couldnot save data");
-              // 🔍 Get error message for a specific field
-              if(result.error){
-                const alreadyExistsError = result.error;
-                 setValidationError({
-                   name: "",
-                   email: "",
-                   password: "",
-                   phoneno: "",
-                   experience: "",
-                   cost: "",
-                   work: "",
-                   userExistsError: alreadyExistsError,
-                 });
-              }
-              else{
-              const getErrorMessage = (field) => {
-                const error = result.errors.find((e) => e.path === field);
-                return error?.msg || null;
-              };
-              setValidationError({
-                name: getErrorMessage("name"),
-                email: getErrorMessage("email"),
-                password: getErrorMessage("password"),
-                phoneno: getErrorMessage("phoneno"),
-                experience: getErrorMessage("experience"),
-                cost: getErrorMessage("cost"),
-                work: getErrorMessage("work"),
-                userExistsError:"",
-              });
-            }
-            }
           } else {
-            //  props.showAlert("Both passwords should be same", "danger");
-            alert("Both password must be same");
+            const getErrorMessage = (field) => {
+              const error = result.errors.find((e) => e.path === field);
+              return error?.msg || null;
+            };
+            setValidationError({
+              name: getErrorMessage("name"),
+              email: getErrorMessage("email"),
+              password: getErrorMessage("password"),
+              phoneno: getErrorMessage("phoneno"),
+              experience: getErrorMessage("experience"),
+              cost: getErrorMessage("cost"),
+              work: getErrorMessage("work"),
+              userExistsError: "",
+            });
           }
-        } catch (error) {
-          alert(error.message);
         }
-
-   };
-
-    // const {values,errors,handleBlur,handleChange,handleSubmit} = useFormik({
-    //   credentials: credentials,
-    //   onSubmit: (values) => {
-    //     console.log(values);
-    //   },
-    // });
-    // console.log(Formik);
+      } else {
+        alert("Both password must be same");
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
     <div
@@ -185,7 +163,6 @@ const Signup = ({
                 type="email"
                 id="email"
                 name="email"
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="example@gmail.com"
                 onChange={onChange}
@@ -199,7 +176,6 @@ const Signup = ({
                 type="password"
                 id="password"
                 name="password"
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Enter your password"
                 onChange={onChange}
@@ -212,7 +188,6 @@ const Signup = ({
                 type="password"
                 id="cpassword"
                 name="cpassword"
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Confirm password"
                 onChange={onChange}
@@ -225,7 +200,6 @@ const Signup = ({
                 type="text"
                 id="phoneno"
                 name="phoneno"
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Enter your phone no"
                 onChange={onChange}
@@ -239,7 +213,6 @@ const Signup = ({
                 type="text"
                 id="experience"
                 name="experience"
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Enter your work experience"
                 onChange={onChange}
@@ -252,7 +225,6 @@ const Signup = ({
                 type="text"
                 id="cost"
                 name="cost"
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Enter your price range"
                 onChange={onChange}
@@ -266,7 +238,6 @@ const Signup = ({
                 type="text"
                 id="work"
                 name="work"
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Enter what work you do"
                 onChange={onChange}

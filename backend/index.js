@@ -8,13 +8,7 @@ const port =process.env.PORT || 3000;
 
 connectToMongo();
 app.use(cors());
-// app.use(
-//   cors({
-//     origin: ["https://e-kam.vercel.app"],
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
+
 app.use(express.json()) // This is an middleware
 
 //Available Routes

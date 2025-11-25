@@ -4,7 +4,7 @@ import ContractorContext from "../context/ContractorContext";
 const UpdateData = ({ setUpdateOpen, updateOpen }) => {
   const context = useContext(ContractorContext);
   const { getData, contractorData } = context;
-  
+
   useEffect(() => {
     getData();
     setCredentials({
@@ -87,9 +87,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
           });
           alert("Account Updated");
           setUpdateOpen(false);
-          //  props.showAlert("Successfully created your account", "success");
         } else {
-          //  props.showAlert("Invalid Details", "danger");
           const getErrorMessage = (field) => {
             const error = result.errors.find((e) => e.path === field);
             return error?.msg || null;
@@ -155,7 +153,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                 id="update-email"
                 name="email"
                 required
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 onChange={onChange}
                 value={credentials.email || ""}
@@ -169,7 +166,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                 id="update-password"
                 name="password"
                 required
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Enter your password"
                 onChange={onChange}
@@ -182,7 +178,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                 type="password"
                 id="update-cpassword"
                 name="cpassword"
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 placeholder="Confirm password"
                 onChange={onChange}
@@ -197,7 +192,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                 id="update-phoneno"
                 name="phoneno"
                 required
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 onChange={onChange}
                 value={credentials.phoneno || ""}
@@ -211,7 +205,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                 id="update-experience"
                 name="experience"
                 required
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 onChange={onChange}
                 value={credentials.experience || ""}
@@ -224,7 +217,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                 id="update-cost"
                 name="cost"
                 required
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 onChange={onChange}
                 value={credentials.cost || ""}
@@ -238,7 +230,6 @@ const UpdateData = ({ setUpdateOpen, updateOpen }) => {
                 id="update-work"
                 name="work"
                 required
-                // value={formData.email}
                 className="w-[280px] mb-1 xl:mb-2 xl:w-94 bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
                 onChange={onChange}
                 value={credentials.work || ""}

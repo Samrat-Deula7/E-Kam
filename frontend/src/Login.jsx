@@ -118,10 +118,8 @@ const Login = ({
               type="email"
               id="login-email"
               name="email"
-              // value={formData.email}
               className="w-[280px] mb-1 xl:mb-2 xl:w-[400px] bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
               placeholder="example@gmail.com"
-              // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               onChange={onChange}
               value={credentials.email}
             />
@@ -132,10 +130,8 @@ const Login = ({
               type="password"
               id="login-password"
               name="password"
-              // value={formData.email}
               className="w-[280px] mb-1 xl:mb-2 xl:w-[400px]  bg-black border border-white/10 rounded px-2 py-1 xl:px-4 xl:py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-[#020617CC]"
               placeholder="Enter your password"
-              // onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               onChange={onChange}
               value={credentials.password}
             />
