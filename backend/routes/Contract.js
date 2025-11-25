@@ -189,6 +189,8 @@ router.put(
     }
 
     const { name, email, password, phoneno, experience, cost, work } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    let secPass = await bcrypt.hash(password, salt);
     const newContractor = {};
     try {
       if (name) {
@@ -198,7 +200,7 @@ router.put(
         newContractor.email = email;
       }
       if (password) {
-        newContractor.password = password;
+        newContractor.password = secPass;
       }
       if (phoneno) {
         newContractor.phoneno = phoneno;

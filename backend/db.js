@@ -1,10 +1,9 @@
-const mongoose =require("mongoose");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 const CloudMongoDB = process.env.CloudMongoDB;
 
 const mongoURL = CloudMongoDB;
-  
 
 const connectToMongo = async () => {
   try {
@@ -15,4 +14,4 @@ const connectToMongo = async () => {
   }
 };
 
-module.exports=connectToMongo;
+module.exports = connectToMongo;
