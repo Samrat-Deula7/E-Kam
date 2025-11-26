@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import ContractorState from "../context/ContractorState";
 import ProtectedRoute from "./ProtectedRoute";
 import UpdateData from "./UpdateData";
-import Loading from "./loading";
+import Loading from "./Loading";
 
 function App() {
   const [menuOpen, setmenuOpen] = useState(false);
