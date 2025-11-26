@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import ContractorContext from "../context/ContractorContext";
 
-const UpdateData = ({ setUpdateOpen, updateOpen }) => {
+const UpdateData = ({ setUpdateOpen, updateOpen, setLoading }) => {
   const context = useContext(ContractorContext);
   const { getData, contractorData } = context;
 

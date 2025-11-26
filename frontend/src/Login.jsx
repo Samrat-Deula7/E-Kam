@@ -6,6 +6,7 @@ const Login = ({
   signupBtn,
   setSignupBtn,
   setIsLoggedIn,
+  setLoading,
 }) => {
   const [loginErrorValidation, setLoginErrorValidation] = useState({
     loginError1: "",
@@ -21,7 +22,7 @@ const Login = ({
       setIsLoggedIn(false);
     }
   }, []);
-  
+
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -45,16 +46,16 @@ const Login = ({
       console.log(result);
       if (result.authtoken && result.contractorId) {
         // Save the auth token and redirect
-         setCredentials({
-           email: "",
-           password: "",
-         });
+        setCredentials({
+          email: "",
+          password: "",
+        });
         alert("logged in");
         setIsLoggedIn(true);
         localStorage.setItem("token", result.authtoken);
         localStorage.setItem("contractorId", result.contractorId);
         setSignupBtn(false);
-      
+
         // props.showAlert("Logged into your account successfully", "success");
       } else {
         // props.showAlert("Invalid credentials", "danger");

@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-const Signup = ({ setcontractorBtn, contractorBtn, setSignupBtn }) => {
+const Signup = ({
+  setcontractorBtn,
+  contractorBtn,
+  setSignupBtn,
+  setLoading,
+}) => {
   const [validationError, setValidationError] = useState({
     name: "",
     email: "",
@@ -30,6 +35,7 @@ const Signup = ({ setcontractorBtn, contractorBtn, setSignupBtn }) => {
   };
 
   const createUser = async () => {
+    setLoading(true);
     try {
       if (credentials.password == credentials.cpassword) {
         // API Call
@@ -77,12 +83,14 @@ const Signup = ({ setcontractorBtn, contractorBtn, setSignupBtn }) => {
             work: "",
             userExistsError: "",
           });
+          setLoading(false);
           setcontractorBtn(false);
           setSignupBtn(true);
           localStorage.setItem("token", result.authtoken);
           alert("Account Created");
         } else {
           if (result.error) {
+            setLoading(false);
             const alreadyExistsError = result.error;
             setValidationError({
               name: "",
