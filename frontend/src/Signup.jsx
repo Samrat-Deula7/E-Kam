@@ -5,7 +5,11 @@ const Signup = ({
   contractorBtn,
   setSignupBtn,
   setLoading,
+  loading,
 }) => {
+  useEffect(() => {setTimeout(()=>{
+    setLoading(false);
+  },5000)}, [loading]);
   const [validationError, setValidationError] = useState({
     name: "",
     email: "",
@@ -35,7 +39,6 @@ const Signup = ({
   };
 
   const createUser = async () => {
-    
     try {
       if (credentials.password == credentials.cpassword) {
         // API Call
@@ -256,7 +259,10 @@ const Signup = ({
           </div>
 
           <button
-            onClick={()=>{createUser;setLoading(true);}}
+            onClick={() => {
+              createUser;
+              setLoading(true);
+            }}
             type="submit"
             className="w-[280px] xl:w-full mb-2 mt-1 bg-blue-500 text-white py-1 px-3 xl:py-3 xl:px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
           >

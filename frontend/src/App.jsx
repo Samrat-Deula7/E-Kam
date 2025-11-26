@@ -66,6 +66,7 @@ function App() {
             setcontractorBtn={setcontractorBtn}
             setSignupBtn={setSignupBtn}
             setLoading={setLoading}
+            loading={loading}
           />
           <Login
             setcontractorBtn={setcontractorBtn}
