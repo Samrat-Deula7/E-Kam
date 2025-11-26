@@ -35,7 +35,7 @@ const Signup = ({
   };
 
   const createUser = async () => {
-    setLoading(true);
+    
     try {
       if (credentials.password == credentials.cpassword) {
         // API Call
@@ -107,6 +107,7 @@ const Signup = ({
               const error = result.errors.find((e) => e.path === field);
               return error?.msg || null;
             };
+            setLoading(false);
             setValidationError({
               name: getErrorMessage("name"),
               email: getErrorMessage("email"),
@@ -255,7 +256,7 @@ const Signup = ({
           </div>
 
           <button
-            onClick={createUser}
+            onClick={()=>{createUser;setLoading(true);}}
             type="submit"
             className="w-[280px] xl:w-full mb-2 mt-1 bg-blue-500 text-white py-1 px-3 xl:py-3 xl:px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
           >
