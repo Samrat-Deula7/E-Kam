@@ -118,7 +118,11 @@ const UpdateData = ({ setUpdateOpen, updateOpen, setLoading }) => {
           : "h-0 opacity-0 pointer-events-none"
       }`}
     >
-      <div className="relative w-[300px] lg:w-[600px] xl:w-[800px] 2xl:w-[800px] text-center bg-[#10172a] rounded-2xl py-3 px-2">
+      <div
+        className={`relative w-[300px] lg:w-[600px] xl:w-[800px] 2xl:w-[800px] text-center bg-[#10172a] rounded-2xl py-3 px-2 ${
+          updateOpen ? "animate-popup" : ""
+        }`}
+      >
         <h2 className="text-2xl  xl:text-6xl font-bold mb-8 text-[#2563eb] text-center">
           Update Data
         </h2>

@@ -139,11 +139,15 @@ const Signup = ({
     <div
       className={`fixed top-0 left-0 min-w-screen  bg-[#020617CC] z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${
         contractorBtn
-          ? "h-screen opacity-100 pointer-events-auto"
+          ? "h-screen opacity-100 pointer-events-auto "
           : "h-0 opacity-0 pointer-events-none"
       }`}
     >
-      <div className="relative w-[300px] lg:w-[600px] xl:w-[800px] 2xl:w-[800px] text-center bg-[#10172a] rounded-2xl py-3 px-2">
+      <div
+        className={`relative w-[300px] lg:w-[600px] xl:w-[800px] 2xl:w-[800px] text-center bg-[#10172a] rounded-2xl py-3 px-2 ${
+          contractorBtn ? "animate-popup" : ""
+        }`}
+      >
         <h2 className="text-2xl  xl:text-6xl font-bold mb-8 text-[#2563eb] text-center">
           Sign Up
         </h2>
@@ -263,9 +267,7 @@ const Signup = ({
           </div>
 
           <button
-            onClick={
-              createUser
-            }
+            onClick={createUser}
             type="submit"
             className="w-[280px] xl:w-full mb-2 mt-1 bg-blue-500 text-white py-1 px-3 xl:py-3 xl:px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
           >

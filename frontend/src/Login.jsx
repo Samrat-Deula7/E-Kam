@@ -94,7 +94,11 @@ const Login = ({
           : "h-0 opacity-0 pointer-events-none"
       }`}
     >
-      <div className="relative  w-[300px]  xl:w-[500px] 2xl:w-[500px] text-center bg-[#10172a]  rounded-2xl py-3 px-2">
+      <div
+        className={`relative  w-[300px]  xl:w-[500px] 2xl:w-[500px] text-center bg-[#10172a]  rounded-2xl py-3 px-2 ${
+          signupBtn ? "animate-popup" : ""
+        }`}
+      >
         <h2 className="text-2xl  xl:text-6xl font-bold mb-4 text-[#2563eb] text-center">
           Log in
         </h2>
