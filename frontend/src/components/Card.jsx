@@ -37,7 +37,7 @@ const Card = ({ Contractor }) => {
           </div>
           {/* This is div 3 */}
           <div className="text-gray-400">
-            <h3>Experience:{Contractor.emailxperience}</h3>
+            <h3>Experience:{Contractor.experience}</h3>
             <h3>Cost:{Contractor.cost}</h3>
           </div>
         </div>

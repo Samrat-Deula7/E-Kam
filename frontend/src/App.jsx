@@ -13,6 +13,7 @@ import ContractorState from "../context/ContractorState";
 import ProtectedRoute from "./ProtectedRoute";
 import UpdateData from "./UpdateData";
 import Loading from "./Loading";
+import Alert from "./Alert";
 
 function App() {
   const [menuOpen, setmenuOpen] = useState(false);
@@ -22,10 +23,18 @@ function App() {
   const [updateOpen, setUpdateOpen] = useState(false);
   const [deleteButton, setDeleteButton] = useState(false);
   const [loading,setLoading]=useState(false);
+  const [alert,setAlert]=useState(false);
   // The following useEffect prevents the page form scrolling when the hamburger icon is open
 
   useEffect(() => {
-    if (menuOpen || contractorBtn || signupBtn || deleteButton || updateOpen) {
+    if (
+      menuOpen ||
+      contractorBtn ||
+      signupBtn ||
+      deleteButton ||
+      updateOpen ||
+      alert
+    ) {
       const scrollY = window.scrollY;
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
@@ -41,7 +50,7 @@ function App() {
       document.body.style.overflow = "";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
-  }, [menuOpen, contractorBtn, signupBtn, deleteButton, updateOpen]);
+  }, [menuOpen, contractorBtn, signupBtn, deleteButton, updateOpen, alert]);
   return (
     <>
       <ContractorState>
@@ -83,6 +92,7 @@ function App() {
             loading={loading}
           />
           <Loading loading={loading} />
+          <Alert alert={alert} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
