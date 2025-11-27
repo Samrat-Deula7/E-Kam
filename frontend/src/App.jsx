@@ -23,7 +23,22 @@ function App() {
   const [updateOpen, setUpdateOpen] = useState(false);
   const [deleteButton, setDeleteButton] = useState(false);
   const [loading,setLoading]=useState(false);
-  const [alert,setAlert]=useState(false);
+  const alertObject={msg:"",type:""}
+  const [alert, setAlert] = useState(alertObject);
+   
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, [loading]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setAlert(false);
+    }, 2000);
+  }, [alert]);
+   
+     
   // The following useEffect prevents the page form scrolling when the hamburger icon is open
 
   useEffect(() => {
@@ -76,6 +91,7 @@ function App() {
             setSignupBtn={setSignupBtn}
             setLoading={setLoading}
             loading={loading}
+            setAlert={setAlert}
           />
           <Login
             setcontractorBtn={setcontractorBtn}

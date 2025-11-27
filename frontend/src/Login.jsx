@@ -15,11 +15,11 @@ const Login = ({
   });
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
-   useEffect(() => {
-     setTimeout(() => {
-       setLoading(false);
-     }, 5000);
-   }, [loading]);
+  //  useEffect(() => {
+  //    setTimeout(() => {
+  //      setLoading(false);
+  //    }, 5000);
+  //  }, [loading]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");

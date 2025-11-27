@@ -6,11 +6,13 @@ const Signup = ({
   setSignupBtn,
   setLoading,
   loading,
+  setAlert,
 }) => {
-  
-  useEffect(() => {setTimeout(()=>{
-    setLoading(false);
-  },5000)}, [loading]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 5000);
+  // }, [loading]);
 
   const [validationError, setValidationError] = useState({
     name: "",
@@ -42,7 +44,7 @@ const Signup = ({
 
   const createUser = async () => {
     try {
-          setLoading(true);
+      setLoading(true);
 
       if (credentials.password == credentials.cpassword) {
         // API Call
@@ -94,7 +96,10 @@ const Signup = ({
           setcontractorBtn(false);
           setSignupBtn(true);
           localStorage.setItem("token", result.authtoken);
-          alert("Account Created");
+          // alert("Account Created");
+          setTimeout(() => {
+            setAlert({ msg: "Account Created", type: "" });
+          }, 2000);
         } else {
           if (result.error) {
             setLoading(false);
@@ -128,12 +133,18 @@ const Signup = ({
           }
         }
       } else {
-        alert("Both password must be same");
+        setTimeout(()=>{
+        setAlert({ msg: "Both password must be same", type: "" });
+        },2000)
+        // alert("Both password must be same");
       }
     } catch (error) {
       setLoading(false);
-
-      alert(error.message);
+      const Error=error.message
+      setTimeout(() => {
+        setAlert({ msg: { Error }, type: "" });
+      }, 2000);
+      // alert(error.message);
     }
   };
 
