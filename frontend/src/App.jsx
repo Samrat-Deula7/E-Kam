@@ -41,7 +41,7 @@ function App() {
       contractorBtn ||
       signupBtn ||
       deleteButton ||
-      updateOpen ||
+      updateOpen 
     ) {
       const scrollY = window.scrollY;
       document.body.style.position = "fixed";
