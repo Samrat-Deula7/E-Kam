@@ -42,7 +42,6 @@ function App() {
       signupBtn ||
       deleteButton ||
       updateOpen ||
-      alert
     ) {
       const scrollY = window.scrollY;
       document.body.style.position = "fixed";
@@ -59,7 +58,7 @@ function App() {
       document.body.style.overflow = "";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
-  }, [menuOpen, contractorBtn, signupBtn, deleteButton, updateOpen, alert]);
+  }, [menuOpen, contractorBtn, signupBtn, deleteButton, updateOpen]);
   return (
     <>
       <ContractorState>
