@@ -74,11 +74,13 @@ function App() {
             setSignupBtn={setSignupBtn}
             setIsLoggedIn={setIsLoggedIn}
             setLoading={setLoading}
+            loading={loading}
           />
           <UpdateData
             updateOpen={updateOpen}
             setUpdateOpen={setUpdateOpen}
             setLoading={setLoading}
+            loading={loading}
           />
           <Loading loading={loading} />
           <Routes>

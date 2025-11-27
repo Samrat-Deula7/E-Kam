@@ -7,12 +7,19 @@ const Login = ({
   setSignupBtn,
   setIsLoggedIn,
   setLoading,
+  loading,
 }) => {
   const [loginErrorValidation, setLoginErrorValidation] = useState({
     loginError1: "",
     loginError2: "",
   });
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+
+   useEffect(() => {
+     setTimeout(() => {
+       setLoading(false);
+     }, 5000);
+   }, [loading]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,6 +39,7 @@ const Login = ({
     // API Call
     const url = "https://e-kam-jwlb.vercel.app/api/contractor/login";
     try {
+       setLoading(true);
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -52,14 +60,14 @@ const Login = ({
         });
         alert("logged in");
         setIsLoggedIn(true);
+         setLoading(false);
         localStorage.setItem("token", result.authtoken);
         localStorage.setItem("contractorId", result.contractorId);
         setSignupBtn(false);
 
-        // props.showAlert("Logged into your account successfully", "success");
       } else {
-        // props.showAlert("Invalid credentials", "danger");
         if (result.errors) {
+          setLoading(false);
           const getErrorMessage = (field) => {
             const errors = result.errors.find((e) => e.path === field);
             return errors?.msg || null;
@@ -69,6 +77,7 @@ const Login = ({
             loginError2: "",
           });
         } else {
+          setLoading(false);
           const error2 = result.error;
           setLoginErrorValidation({
             loginError1: "",
@@ -80,6 +89,7 @@ const Login = ({
         setSignupBtn(true);
       }
     } catch (error) {
+      setLoading(false);
       alert(error.message);
     }
   };

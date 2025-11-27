@@ -7,9 +7,11 @@ const Signup = ({
   setLoading,
   loading,
 }) => {
+  
   useEffect(() => {setTimeout(()=>{
     setLoading(false);
   },5000)}, [loading]);
+
   const [validationError, setValidationError] = useState({
     name: "",
     email: "",

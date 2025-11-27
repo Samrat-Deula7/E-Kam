@@ -1,9 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import ContractorContext from "../context/ContractorContext";
 
-const UpdateData = ({ setUpdateOpen, updateOpen, setLoading }) => {
+const UpdateData = ({ setUpdateOpen, updateOpen, setLoading, loading }) => {
   const context = useContext(ContractorContext);
   const { getData, contractorData } = context;
+
+ useEffect(() => {
+   setTimeout(() => {
+     setLoading(false);
+   }, 5000);
+ }, [loading]);
 
   useEffect(() => {
     getData();
@@ -49,6 +55,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen, setLoading }) => {
     const id = localStorage.getItem("contractorId");
     const token = localStorage.getItem("token");
     try {
+      setLoading(true);
       if (credentials.password == credentials.cpassword) {
         // API Call
         const url = ` https://e-kam-jwlb.vercel.app/api/contractor/updatedata/${id}`;
@@ -86,8 +93,10 @@ const UpdateData = ({ setUpdateOpen, updateOpen, setLoading }) => {
             work: contractorData.work,
           });
           alert("Account Updated");
+          setLoading(false);
           setUpdateOpen(false);
         } else {
+          setLoading(false);
           const getErrorMessage = (field) => {
             const error = result.errors.find((e) => e.path === field);
             return error?.msg || null;
@@ -103,9 +112,11 @@ const UpdateData = ({ setUpdateOpen, updateOpen, setLoading }) => {
           });
         }
       } else {
+        setLoading(false);
         alert("Both password must be same");
       }
     } catch (error) {
+      setLoading(false);
       alert(error.message);
     }
   };
