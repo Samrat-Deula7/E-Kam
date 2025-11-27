@@ -5,11 +5,7 @@ const UpdateData = ({ setUpdateOpen, updateOpen, setLoading, loading }) => {
   const context = useContext(ContractorContext);
   const { getData, contractorData } = context;
 
-//  useEffect(() => {
-//    setTimeout(() => {
-//      setLoading(false);
-//    }, 5000);
-//  }, [loading]);
+
 
   useEffect(() => {
     getData();

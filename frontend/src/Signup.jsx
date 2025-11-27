@@ -6,7 +6,6 @@ const Signup = ({
   setSignupBtn,
   setLoading,
   loading,
-  setAlert,
 }) => {
   // useEffect(() => {
   //   setTimeout(() => {
@@ -96,10 +95,8 @@ const Signup = ({
           setcontractorBtn(false);
           setSignupBtn(true);
           localStorage.setItem("token", result.authtoken);
-          // alert("Account Created");
-          setTimeout(() => {
-            setAlert({ msg: "Account Created", type: "" });
-          }, 2000);
+          alert("Account Created");
+        
         } else {
           if (result.error) {
             setLoading(false);
@@ -133,10 +130,8 @@ const Signup = ({
           }
         }
       } else {
-        setTimeout(()=>{
-        setAlert({ msg: "Both password must be same", type: "" });
-        },2000)
-        // alert("Both password must be same");
+        setLoading(false);
+        alert("Both password must be same");
       }
     } catch (error) {
       setLoading(false);      

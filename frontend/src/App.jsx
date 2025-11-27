@@ -13,7 +13,6 @@ import ContractorState from "../context/ContractorState";
 import ProtectedRoute from "./ProtectedRoute";
 import UpdateData from "./UpdateData";
 import Loading from "./Loading";
-import Alert from "./Alert";
 
 function App() {
   const [menuOpen, setmenuOpen] = useState(false);
@@ -23,20 +22,15 @@ function App() {
   const [updateOpen, setUpdateOpen] = useState(false);
   const [deleteButton, setDeleteButton] = useState(false);
   const [loading,setLoading]=useState(false);
-  const alertObject={msg:"",type:""}
-  const [alert, setAlert] = useState(alertObject);
+ 
    
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 3000);
   }, [loading]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setAlert(false);
-    }, 2000);
-  }, [alert]);
+
    
      
   // The following useEffect prevents the page form scrolling when the hamburger icon is open
@@ -91,7 +85,6 @@ function App() {
             setSignupBtn={setSignupBtn}
             setLoading={setLoading}
             loading={loading}
-            setAlert={setAlert}
           />
           <Login
             setcontractorBtn={setcontractorBtn}
@@ -108,7 +101,6 @@ function App() {
             loading={loading}
           />
           <Loading loading={loading} />
-          <Alert alert={alert} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
