@@ -139,12 +139,8 @@ const Signup = ({
         // alert("Both password must be same");
       }
     } catch (error) {
-      setLoading(false);
-      const Error=error.message
-      setTimeout(() => {
-        setAlert({ msg: { Error }, type: "" });
-      }, 2000);
-      // alert(error.message);
+      setLoading(false);      
+      alert(error.message);
     }
   };
 
